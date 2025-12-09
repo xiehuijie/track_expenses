@@ -1,0 +1,39 @@
+{
+  "recommendations": [
+    // Dart & Flutter 核心扩展
+    "Dart-Code.dart-code",
+    "Dart-Code.flutter",
+    // 代码格式化和质量
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    // Git 相关
+    "eamodio.gitlens",
+    "mhutchie.git-graph",
+    // YAML 支持
+    "redhat.vscode-yaml",
+    // 代码片段和智能提示
+    "nash.awesome-flutter-snippets",
+    "alexisvt.flutter-snippets",
+    // 错误和警告
+    "usernamehw.errorlens",
+    // 颜色高亮
+    "naumovs.color-highlight",
+    // Bracket 配对
+    "CoenraadS.bracket-pair-colorizer-2",
+    // TODO 高亮
+    "Gruntfuggly.todo-tree",
+    // 图标主题
+    "PKief.material-icon-theme",
+    // 测试覆盖率
+    "ryanluker.vscode-coverage-gutters",
+    // 文档生成
+    "flutterando.flutter-docs",
+    // Pubspec 辅助
+    "localizely.flutter-intl",
+    // JSON 查看
+    "mohsen1.prettify-json",
+    // REST 客户端 (调试 API)
+    "humao.rest-client"
+  ],
+  "unwantedRecommendations": []
+}

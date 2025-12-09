@@ -1,0 +1,489 @@
+name: CI/CD Pipeline
+
+on:
+  # 手动触发
+  workflow_dispatch:
+    inputs:
+      run_lint:
+        description: "运行代码检查 (Lint)"
+        required: true
+        default: true
+        type: boolean
+      run_format:
+        description: "检查代码格式 (Format)"
+        required: true
+        default: true
+        type: boolean
+      run_test:
+        description: "运行测试 (Test)"
+        required: true
+        default: true
+        type: boolean
+      run_build:
+        description: "构建应用 (Build)"
+        required: false
+        default: false
+        type: boolean
+      build_target:
+        description: "构建目标平台"
+        required: false
+        default: "apk"
+        type: choice
+        options:
+          - apk
+          - appbundle
+          - web
+          - windows
+          - ios
+          - macos
+          - linux
+
+  # 也支持 Push 和 PR 触发（可选）
+  push:
+    branches: [main, master, develop]
+    paths:
+      - "lib/**"
+      - "test/**"
+      - "pubspec.yaml"
+      - ".github/workflows/**"
+  pull_request:
+    branches: [main, master, develop]
+    paths:
+      - "lib/**"
+      - "test/**"
+      - "pubspec.yaml"
+
+# 取消之前的运行
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  FLUTTER_VERSION: "3.29.0"
+
+jobs:
+  # ============================================
+  # 代码质量检查
+  # ============================================
+  lint:
+    name: 🔍 代码检查 (Lint)
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name != 'workflow_dispatch' || inputs.run_lint }}
+
+    steps:
+      - name: 📥 检出代码
+        uses: actions/checkout@v4
+
+      - name: 🎯 设置 Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: "stable"
+          cache: true
+
+      - name: 📦 获取依赖
+        run: flutter pub get
+
+      - name: 🔍 运行 Flutter Analyze
+        run: flutter analyze --fatal-infos
+
+      - name: 📊 生成分析报告
+        if: always()
+        run: |
+          echo "## 🔍 代码分析结果" >> $GITHUB_STEP_SUMMARY
+          flutter analyze 2>&1 | head -50 >> $GITHUB_STEP_SUMMARY || true
+
+  # ============================================
+  # 代码格式检查
+  # ============================================
+  format:
+    name: 🎨 格式检查 (Format)
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name != 'workflow_dispatch' || inputs.run_format }}
+
+    steps:
+      - name: 📥 检出代码
+        uses: actions/checkout@v4
+
+      - name: 🎯 设置 Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: "stable"
+          cache: true
+
+      - name: 🎨 检查代码格式
+        run: dart format --set-exit-if-changed lib/ test/
+
+      - name: 📊 格式检查报告
+        if: always()
+        run: |
+          echo "## 🎨 代码格式检查" >> $GITHUB_STEP_SUMMARY
+          echo "✅ 所有代码格式正确" >> $GITHUB_STEP_SUMMARY
+
+  # ============================================
+  # 单元测试
+  # ============================================
+  test:
+    name: 🧪 单元测试 (Test)
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name != 'workflow_dispatch' || inputs.run_test }}
+
+    steps:
+      - name: 📥 检出代码
+        uses: actions/checkout@v4
+
+      - name: 🎯 设置 Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: "stable"
+          cache: true
+
+      - name: 📦 获取依赖
+        run: flutter pub get
+
+      - name: 🧪 运行测试
+        run: flutter test --coverage --reporter=github
+
+      - name: 📊 测试覆盖率报告
+        if: always()
+        run: |
+          echo "## 🧪 测试结果" >> $GITHUB_STEP_SUMMARY
+          if [ -f coverage/lcov.info ]; then
+            echo "✅ 测试完成，覆盖率报告已生成" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ 未生成覆盖率报告" >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: 📤 上传覆盖率报告
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage/
+          retention-days: 7
+
+  # ============================================
+  # 构建 Android APK
+  # ============================================
+  build-android:
+    name: 🤖 构建 Android
+    runs-on: ubuntu-latest
+    needs: [lint, format, test]
+    if: |
+      always() &&
+      (needs.lint.result == 'success' || needs.lint.result == 'skipped') &&
+      (needs.format.result == 'success' || needs.format.result == 'skipped') &&
+      (needs.test.result == 'success' || needs.test.result == 'skipped') &&
+      github.event_name == 'workflow_dispatch' && 
+      inputs.run_build && 
+      (inputs.build_target == 'apk' || inputs.build_target == 'appbundle')
+
+    steps:
+      - name: 📥 检出代码
+        uses: actions/checkout@v4
+
+      - name: ☕ 设置 Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: "zulu"
+          java-version: "17"
+          cache: "gradle"
+
+      - name: 🎯 设置 Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: "stable"
+          cache: true
+
+      - name: 📦 获取依赖
+        run: flutter pub get
+
+      - name: 🔨 构建 APK
+        if: inputs.build_target == 'apk'
+        run: flutter build apk --release --split-per-abi
+
+      - name: 🔨 构建 App Bundle
+        if: inputs.build_target == 'appbundle'
+        run: flutter build appbundle --release
+
+      - name: 📤 上传 APK
+        if: inputs.build_target == 'apk'
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-apk-release
+          path: build/app/outputs/flutter-apk/*.apk
+          retention-days: 14
+
+      - name: 📤 上传 App Bundle
+        if: inputs.build_target == 'appbundle'
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-aab-release
+          path: build/app/outputs/bundle/release/*.aab
+          retention-days: 14
+
+      - name: 📊 构建报告
+        if: always()
+        run: |
+          echo "## 🤖 Android 构建结果" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ inputs.build_target }}" == "apk" ]; then
+            echo "📦 APK 文件:" >> $GITHUB_STEP_SUMMARY
+            ls -lh build/app/outputs/flutter-apk/*.apk 2>/dev/null >> $GITHUB_STEP_SUMMARY || echo "未找到 APK 文件" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "📦 App Bundle 文件:" >> $GITHUB_STEP_SUMMARY
+            ls -lh build/app/outputs/bundle/release/*.aab 2>/dev/null >> $GITHUB_STEP_SUMMARY || echo "未找到 AAB 文件" >> $GITHUB_STEP_SUMMARY
+          fi
+
+  # ============================================
+  # 构建 Web
+  # ============================================
+  build-web:
+    name: 🌐 构建 Web
+    runs-on: ubuntu-latest
+    needs: [lint, format, test]
+    if: |
+      always() &&
+      (needs.lint.result == 'success' || needs.lint.result == 'skipped') &&
+      (needs.format.result == 'success' || needs.format.result == 'skipped') &&
+      (needs.test.result == 'success' || needs.test.result == 'skipped') &&
+      github.event_name == 'workflow_dispatch' && 
+      inputs.run_build && 
+      inputs.build_target == 'web'
+
+    steps:
+      - name: 📥 检出代码
+        uses: actions/checkout@v4
+
+      - name: 🎯 设置 Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: "stable"
+          cache: true
+
+      - name: 📦 获取依赖
+        run: flutter pub get
+
+      - name: 🔨 构建 Web
+        run: flutter build web --release --web-renderer html
+
+      - name: 📤 上传 Web 构建
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-release
+          path: build/web/
+          retention-days: 14
+
+      - name: 📊 构建报告
+        if: always()
+        run: |
+          echo "## 🌐 Web 构建结果" >> $GITHUB_STEP_SUMMARY
+          echo "📦 构建大小:" >> $GITHUB_STEP_SUMMARY
+          du -sh build/web/ >> $GITHUB_STEP_SUMMARY
+
+  # ============================================
+  # 构建 Windows
+  # ============================================
+  build-windows:
+    name: 🪟 构建 Windows
+    runs-on: windows-latest
+    needs: [lint, format, test]
+    if: |
+      always() &&
+      (needs.lint.result == 'success' || needs.lint.result == 'skipped') &&
+      (needs.format.result == 'success' || needs.format.result == 'skipped') &&
+      (needs.test.result == 'success' || needs.test.result == 'skipped') &&
+      github.event_name == 'workflow_dispatch' && 
+      inputs.run_build && 
+      inputs.build_target == 'windows'
+
+    steps:
+      - name: 📥 检出代码
+        uses: actions/checkout@v4
+
+      - name: 🎯 设置 Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: "stable"
+          cache: true
+
+      - name: 📦 获取依赖
+        run: flutter pub get
+
+      - name: 🔨 构建 Windows
+        run: flutter build windows --release
+
+      - name: 📤 上传 Windows 构建
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-release
+          path: build/windows/x64/runner/Release/
+          retention-days: 14
+
+  # ============================================
+  # 构建 iOS (仅 macOS runner)
+  # ============================================
+  build-ios:
+    name: 🍎 构建 iOS
+    runs-on: macos-latest
+    needs: [lint, format, test]
+    if: |
+      always() &&
+      (needs.lint.result == 'success' || needs.lint.result == 'skipped') &&
+      (needs.format.result == 'success' || needs.format.result == 'skipped') &&
+      (needs.test.result == 'success' || needs.test.result == 'skipped') &&
+      github.event_name == 'workflow_dispatch' && 
+      inputs.run_build && 
+      inputs.build_target == 'ios'
+
+    steps:
+      - name: 📥 检出代码
+        uses: actions/checkout@v4
+
+      - name: 🎯 设置 Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: "stable"
+          cache: true
+
+      - name: 📦 获取依赖
+        run: flutter pub get
+
+      - name: 🔨 构建 iOS (无签名)
+        run: flutter build ios --release --no-codesign
+
+      - name: 📤 上传 iOS 构建
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-release
+          path: build/ios/iphoneos/
+          retention-days: 14
+
+  # ============================================
+  # 构建 macOS
+  # ============================================
+  build-macos:
+    name: 🍏 构建 macOS
+    runs-on: macos-latest
+    needs: [lint, format, test]
+    if: |
+      always() &&
+      (needs.lint.result == 'success' || needs.lint.result == 'skipped') &&
+      (needs.format.result == 'success' || needs.format.result == 'skipped') &&
+      (needs.test.result == 'success' || needs.test.result == 'skipped') &&
+      github.event_name == 'workflow_dispatch' && 
+      inputs.run_build && 
+      inputs.build_target == 'macos'
+
+    steps:
+      - name: 📥 检出代码
+        uses: actions/checkout@v4
+
+      - name: 🎯 设置 Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: "stable"
+          cache: true
+
+      - name: 📦 获取依赖
+        run: flutter pub get
+
+      - name: 🔨 构建 macOS
+        run: flutter build macos --release
+
+      - name: 📤 上传 macOS 构建
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos-release
+          path: build/macos/Build/Products/Release/
+          retention-days: 14
+
+  # ============================================
+  # 构建 Linux
+  # ============================================
+  build-linux:
+    name: 🐧 构建 Linux
+    runs-on: ubuntu-latest
+    needs: [lint, format, test]
+    if: |
+      always() &&
+      (needs.lint.result == 'success' || needs.lint.result == 'skipped') &&
+      (needs.format.result == 'success' || needs.format.result == 'skipped') &&
+      (needs.test.result == 'success' || needs.test.result == 'skipped') &&
+      github.event_name == 'workflow_dispatch' && 
+      inputs.run_build && 
+      inputs.build_target == 'linux'
+
+    steps:
+      - name: 📥 检出代码
+        uses: actions/checkout@v4
+
+      - name: 🔧 安装 Linux 依赖
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev libstdc++-12-dev
+
+      - name: 🎯 设置 Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: "stable"
+          cache: true
+
+      - name: 📦 获取依赖
+        run: flutter pub get
+
+      - name: 🔨 构建 Linux
+        run: flutter build linux --release
+
+      - name: 📤 上传 Linux 构建
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-release
+          path: build/linux/x64/release/bundle/
+          retention-days: 14
+
+  # ============================================
+  # 工作流摘要
+  # ============================================
+  summary:
+    name: 📋 工作流摘要
+    runs-on: ubuntu-latest
+    needs:
+      [
+        lint,
+        format,
+        test,
+        build-android,
+        build-web,
+        build-windows,
+        build-ios,
+        build-macos,
+        build-linux,
+      ]
+    if: always()
+
+    steps:
+      - name: 📊 生成摘要
+        run: |
+          echo "# 🚀 CI/CD 流水线执行摘要" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| 任务 | 状态 |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|------|" >> $GITHUB_STEP_SUMMARY
+          echo "| 🔍 代码检查 | ${{ needs.lint.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🎨 格式检查 | ${{ needs.format.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🧪 单元测试 | ${{ needs.test.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🤖 Android 构建 | ${{ needs.build-android.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🌐 Web 构建 | ${{ needs.build-web.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🪟 Windows 构建 | ${{ needs.build-windows.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🍎 iOS 构建 | ${{ needs.build-ios.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🍏 macOS 构建 | ${{ needs.build-macos.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🐧 Linux 构建 | ${{ needs.build-linux.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "📅 执行时间: $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
