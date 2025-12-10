@@ -135,10 +135,6 @@ class _QRCodeScreenState extends State<QRCodeScreen> {
                       alignment: WrapAlignment.center,
                       children: [
                         _buildCustomQrCode(
-                          '带Logo',
-                          embeddedImage: const AssetImage('assets/flutter_logo.png'),
-                        ),
-                        _buildCustomQrCode(
                           '彩色',
                           foregroundColor: colorScheme.primary,
                         ),
@@ -146,6 +142,10 @@ class _QRCodeScreenState extends State<QRCodeScreen> {
                           '圆角',
                           gapless: true,
                           shape: QrDataModuleShape.circle,
+                        ),
+                        _buildCustomQrCode(
+                          '次要色',
+                          foregroundColor: colorScheme.secondary,
                         ),
                       ],
                     ),

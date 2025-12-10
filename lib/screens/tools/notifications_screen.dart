@@ -143,6 +143,15 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
   }
 
   Future<void> _scheduleNotification() async {
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('将在5秒后显示通知...')),
+      );
+    }
+
+    // Use a simple delayed notification instead of zonedSchedule
+    await Future.delayed(const Duration(seconds: 5));
+
     const androidDetails = AndroidNotificationDetails(
       'scheduled_channel',
       '定时通知',
@@ -153,21 +162,13 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
     const iosDetails = DarwinNotificationDetails();
     const details = NotificationDetails(android: androidDetails, iOS: iosDetails);
 
-    await _notificationsPlugin.zonedSchedule(
+    await _notificationsPlugin.show(
       3,
       '定时通知',
-      '这是一个5秒后的定时通知',
-      DateTime.now().add(const Duration(seconds: 5)).toUtc(),
+      '这是一个延迟5秒的通知',
       details,
-      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-      uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
+      payload: 'scheduled_notification',
     );
-
-    if (mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('已安排5秒后的通知')),
-      );
-    }
   }
 
   Future<void> _cancelAllNotifications() async {
