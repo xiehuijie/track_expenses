@@ -13,7 +13,7 @@ class MaterialShowcaseApp extends StatefulWidget {
 
 class _MaterialShowcaseAppState extends State<MaterialShowcaseApp> {
   ThemeMode _themeMode = ThemeMode.system;
-  ThemeColor _themeColor = ThemeColor.deepPurple;
+  AppThemeColor _themeColor = AppThemeColor.deepPurple;
   Locale _locale = const Locale('zh', 'CN');
 
   void _toggleTheme() {
@@ -22,7 +22,7 @@ class _MaterialShowcaseAppState extends State<MaterialShowcaseApp> {
     });
   }
 
-  void _changeThemeColor(ThemeColor color) {
+  void _changeThemeColor(AppThemeColor color) {
     setState(() {
       _themeColor = color;
     });

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:confetti/confetti.dart';
-import 'package:lottie/lottie.dart';
 
 class EffectsScreen extends StatefulWidget {
   const EffectsScreen({super.key});
@@ -12,6 +11,7 @@ class EffectsScreen extends StatefulWidget {
 class _EffectsScreenState extends State<EffectsScreen> with TickerProviderStateMixin {
   late ConfettiController _confettiController;
   late AnimationController _scaleController;
+  late AnimationController _rotationController;
   late Animation<double> _scaleAnimation;
 
   @override
@@ -25,12 +25,17 @@ class _EffectsScreenState extends State<EffectsScreen> with TickerProviderStateM
     _scaleAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(parent: _scaleController, curve: Curves.elasticOut),
     );
+    _rotationController = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    )..repeat();
   }
 
   @override
   void dispose() {
     _confettiController.dispose();
     _scaleController.dispose();
+    _rotationController.dispose();
     super.dispose();
   }
 
@@ -161,12 +166,7 @@ class _EffectsScreenState extends State<EffectsScreen> with TickerProviderStateM
                   title: '旋转动画',
                   child: Center(
                     child: RotationTransition(
-                      turns: Tween<double>(begin: 0.0, end: 1.0).animate(
-                        AnimationController(
-                          duration: const Duration(seconds: 2),
-                          vsync: this,
-                        )..repeat(),
-                      ),
+                      turns: Tween<double>(begin: 0.0, end: 1.0).animate(_rotationController),
                       child: Icon(
                         Icons.sync,
                         size: 60,

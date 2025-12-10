@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-enum ThemeColor {
+enum AppThemeColor {
   deepPurple(Colors.deepPurple, '紫色', 'Purple'),
   blue(Colors.blue, '蓝色', 'Blue'),
   red(Colors.red, '红色', 'Red'),
@@ -16,11 +16,11 @@ enum ThemeColor {
   final String nameCn;
   final String nameEn;
 
-  const ThemeColor(this.color, this.nameCn, this.nameEn);
+  const AppThemeColor(this.color, this.nameCn, this.nameEn);
 }
 
 class AppThemeProvider {
-  static ThemeData getTheme(ThemeColor themeColor, Brightness brightness) {
+  static ThemeData getTheme(AppThemeColor themeColor, Brightness brightness) {
     return ThemeData(
       useMaterial3: true,
       colorScheme: ColorScheme.fromSeed(
@@ -69,7 +69,7 @@ class AppThemeProvider {
     );
   }
 
-  static List<ThemeColor> getAllThemeColors() {
-    return ThemeColor.values;
+  static List<AppThemeColor> getAllThemeColors() {
+    return AppThemeColor.values;
   }
 }

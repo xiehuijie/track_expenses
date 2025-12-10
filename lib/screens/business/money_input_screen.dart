@@ -9,6 +9,9 @@ class MoneyInputScreen extends StatefulWidget {
 }
 
 class _MoneyInputScreenState extends State<MoneyInputScreen> {
+  // Maximum digits allowed (10 digits = up to 99,999,999.99, approximately 100 million)
+  static const int _maxDigits = 10;
+  
   final TextEditingController _amountController = TextEditingController();
   String _displayAmount = '0.00';
 
@@ -25,13 +28,14 @@ class _MoneyInputScreenState extends State<MoneyInputScreen> {
         _displayAmount = '0.0$value';
       } else {
         // Remove the decimal point, add the new digit, then reformat
+        // This algorithm shifts existing digits left and adds the new digit at the end
         String withoutDecimal = _displayAmount.replaceAll('.', '');
         withoutDecimal += value;
-        // Keep only the last meaningful digits
-        if (withoutDecimal.length > 10) {
-          withoutDecimal = withoutDecimal.substring(withoutDecimal.length - 10);
+        // Keep only the last meaningful digits to prevent overflow
+        if (withoutDecimal.length > _maxDigits) {
+          withoutDecimal = withoutDecimal.substring(withoutDecimal.length - _maxDigits);
         }
-        // Insert decimal point 2 digits from the right
+        // Insert decimal point 2 digits from the right for cents precision
         int length = withoutDecimal.length;
         _displayAmount = '${withoutDecimal.substring(0, length - 2)}.${withoutDecimal.substring(length - 2)}';
       }

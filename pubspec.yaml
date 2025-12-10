@@ -62,7 +62,6 @@ dependencies:
   table_calendar: ^3.1.2
 
   # 二维码
-  qr_code_scanner: ^1.0.1
   qr_flutter: ^4.1.0
 
   # 通知
@@ -80,8 +79,7 @@ dependencies:
   percent_indicator: ^4.2.3
   step_progress_indicator: ^1.0.2
 
-  # 粒子效果
-  particles_flutter: ^0.1.4
+
 
 dev_dependencies:
   flutter_test:

@@ -24,9 +24,9 @@ import 'tools/tutorial_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   final VoidCallback onToggleTheme;
-  final Function(ThemeColor) onChangeThemeColor;
+  final Function(AppThemeColor) onChangeThemeColor;
   final Function(Locale) onChangeLocale;
-  final ThemeColor currentThemeColor;
+  final AppThemeColor currentThemeColor;
   final Locale currentLocale;
 
   const HomeScreen({

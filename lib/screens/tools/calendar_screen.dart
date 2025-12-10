@@ -21,8 +21,8 @@ class _CalendarScreenState extends State<CalendarScreen> {
     // Add some sample events
     final today = DateTime.now();
     _events[DateTime(today.year, today.month, today.day)] = ['会议', '购物'];
-    _events[DateTime(today.year, today.month, today.day + 1)] = ['运动'];
-    _events[DateTime(today.year, today.month, today.day + 5)] = ['生日聚会', '晚餐'];
+    _events[DateTime(today.year, today.month, today.day).add(const Duration(days: 1))] = ['运动'];
+    _events[DateTime(today.year, today.month, today.day).add(const Duration(days: 5))] = ['生日聚会', '晚餐'];
   }
 
   List<String> _getEventsForDay(DateTime day) {

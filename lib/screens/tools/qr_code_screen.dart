@@ -80,7 +80,14 @@ class _QRCodeScreenState extends State<QRCodeScreen> {
                             fontWeight: FontWeight.bold,
                           ),
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 8),
+                    Text(
+                      '注意: 白色背景确保二维码可被正确扫描',
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: colorScheme.onSurfaceVariant,
+                          ),
+                    ),
+                    const SizedBox(height: 8),
                     Container(
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(

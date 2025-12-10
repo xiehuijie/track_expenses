@@ -145,11 +145,14 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
   Future<void> _scheduleNotification() async {
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('将在5秒后显示通知...')),
+        const SnackBar(content: Text('将在5秒后显示通知... (注意: 如果离开此页面，通知可能不会触发)')),
       );
     }
 
-    // Use a simple delayed notification instead of zonedSchedule
+    // Note: Using Future.delayed for simplicity. This will not work if the user
+    // navigates away from the screen or the app is closed/backgrounded.
+    // For production use, implement proper scheduling with zonedSchedule or
+    // background task scheduling.
     await Future.delayed(const Duration(seconds: 5));
 
     const androidDetails = AndroidNotificationDetails(
