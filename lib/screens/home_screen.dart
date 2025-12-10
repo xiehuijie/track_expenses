@@ -2,6 +2,7 @@ import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../app/theme_provider.dart';
 import 'animations/animations_screen.dart';
 import 'components/buttons_screen.dart';
 import 'components/cards_lists_screen.dart';
@@ -12,11 +13,28 @@ import 'components/selections_screen.dart';
 import 'hardware/hardware_screen.dart';
 import 'storage/storage_screen.dart';
 import 'system/system_screen.dart';
+import 'tools/calendar_screen.dart';
+import 'tools/charts_screen.dart';
+import 'tools/effects_screen.dart';
+import 'tools/notifications_screen.dart';
+import 'tools/progress_screen.dart';
+import 'tools/qr_code_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   final VoidCallback onToggleTheme;
+  final Function(ThemeColor) onChangeThemeColor;
+  final Function(Locale) onChangeLocale;
+  final ThemeColor currentThemeColor;
+  final Locale currentLocale;
 
-  const HomeScreen({super.key, required this.onToggleTheme});
+  const HomeScreen({
+    super.key,
+    required this.onToggleTheme,
+    required this.onChangeThemeColor,
+    required this.onChangeLocale,
+    required this.currentThemeColor,
+    required this.currentLocale,
+  });
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -78,6 +96,48 @@ class _HomeScreenState extends State<HomeScreen> {
           icon: Icons.motion_photos_on,
           screen: const AnimationsScreen(),
         ),
+        _DemoItem(
+          title: '特效动画',
+          subtitle: '烟花、粒子、Lottie动画',
+          icon: Icons.auto_awesome,
+          screen: const EffectsScreen(),
+        ),
+      ],
+    ),
+    _CategoryItem(
+      title: '工具组件',
+      icon: Icons.build,
+      items: [
+        _DemoItem(
+          title: '图表',
+          subtitle: '折线图、柱状图、饼图',
+          icon: Icons.bar_chart,
+          screen: const ChartsScreen(),
+        ),
+        _DemoItem(
+          title: '日历',
+          subtitle: '日历选择、事件管理',
+          icon: Icons.calendar_month,
+          screen: const CalendarScreen(),
+        ),
+        _DemoItem(
+          title: '二维码',
+          subtitle: '生成二维码、自定义样式',
+          icon: Icons.qr_code,
+          screen: const QRCodeScreen(),
+        ),
+        _DemoItem(
+          title: '进度指示器',
+          subtitle: '线性、圆形、步骤进度条',
+          icon: Icons.trending_up,
+          screen: const ProgressScreen(),
+        ),
+        _DemoItem(
+          title: '通知',
+          subtitle: '本地通知、定时通知',
+          icon: Icons.notifications_active,
+          screen: const NotificationsScreen(),
+        ),
       ],
     ),
     _CategoryItem(
@@ -135,6 +195,14 @@ class _HomeScreenState extends State<HomeScreen> {
               widget.onToggleTheme();
             },
             tooltip: '切换主题',
+          ),
+          IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: () {
+              HapticFeedback.lightImpact();
+              _showSettingsDialog();
+            },
+            tooltip: '设置',
           ),
         ],
       ),
@@ -209,6 +277,90 @@ class _HomeScreenState extends State<HomeScreen> {
             },
           );
         },
+      ),
+    );
+  }
+
+  void _showSettingsDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('设置'),
+        content: SizedBox(
+          width: double.maxFinite,
+          child: ListView(
+            shrinkWrap: true,
+            children: [
+              const Text(
+                '主题颜色',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              ),
+              const SizedBox(height: 12),
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: AppThemeProvider.getAllThemeColors().map((themeColor) {
+                  final isSelected = widget.currentThemeColor == themeColor;
+                  return InkWell(
+                    onTap: () {
+                      widget.onChangeThemeColor(themeColor);
+                      HapticFeedback.selectionClick();
+                    },
+                    child: Container(
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: themeColor.color,
+                        shape: BoxShape.circle,
+                        border: isSelected ? Border.all(color: Colors.white, width: 3) : null,
+                        boxShadow: isSelected
+                            ? [
+                                BoxShadow(
+                                  color: themeColor.color.withOpacity(0.5),
+                                  blurRadius: 8,
+                                  spreadRadius: 2,
+                                )
+                              ]
+                            : null,
+                      ),
+                      child: isSelected ? const Icon(Icons.check, color: Colors.white) : null,
+                    ),
+                  );
+                }).toList(),
+              ),
+              const SizedBox(height: 24),
+              const Text(
+                '语言',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              ),
+              const SizedBox(height: 12),
+              RadioListTile<String>(
+                title: const Text('中文'),
+                value: 'zh',
+                groupValue: widget.currentLocale.languageCode,
+                onChanged: (value) {
+                  widget.onChangeLocale(const Locale('zh', 'CN'));
+                  HapticFeedback.selectionClick();
+                },
+              ),
+              RadioListTile<String>(
+                title: const Text('English'),
+                value: 'en',
+                groupValue: widget.currentLocale.languageCode,
+                onChanged: (value) {
+                  widget.onChangeLocale(const Locale('en', 'US'));
+                  HapticFeedback.selectionClick();
+                },
+              ),
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('关闭'),
+          ),
+        ],
       ),
     );
   }
