@@ -246,11 +246,11 @@ class _CameraTabState extends State<_CameraTab> {
                         Container(
                           height: 200,
                           decoration: BoxDecoration(
-                            color: Colors.grey[300],
+                            color: Theme.of(context).colorScheme.surfaceContainerHighest,
                             borderRadius: BorderRadius.circular(12),
                           ),
-                          child: const Center(
-                            child: Icon(Icons.camera_alt, size: 64, color: Colors.grey),
+                          child: Center(
+                            child: Icon(Icons.camera_alt, size: 64, color: Theme.of(context).colorScheme.onSurfaceVariant),
                           ),
                         ),
                         const SizedBox(height: 16),
@@ -309,7 +309,7 @@ class _CameraTabState extends State<_CameraTab> {
                     const SizedBox(height: 8),
                     Text(
                       '路径: ${_capturedImage!.path}',
-                      style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+                      style: TextStyle(fontSize: 12, color: Theme.of(context).colorScheme.onSurfaceVariant),
                     ),
                   ],
                 ],
@@ -607,7 +607,7 @@ class _SensorsTabState extends State<_SensorsTab> {
                   const SizedBox(height: 8),
                   Text(
                     _isListening ? '传感器监听中...' : '点击开始监听传感器数据',
-                    style: TextStyle(color: Colors.grey[600]),
+                    style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant),
                   ),
                 ],
               ),
