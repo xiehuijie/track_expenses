@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 
 import '../app/theme_provider.dart';
 import 'animations/animations_screen.dart';
+import 'business/money_input_screen.dart';
 import 'components/buttons_screen.dart';
 import 'components/cards_lists_screen.dart';
 import 'components/dialogs_screen.dart';
@@ -19,6 +20,7 @@ import 'tools/effects_screen.dart';
 import 'tools/notifications_screen.dart';
 import 'tools/progress_screen.dart';
 import 'tools/qr_code_screen.dart';
+import 'tools/tutorial_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   final VoidCallback onToggleTheme;
@@ -137,6 +139,24 @@ class _HomeScreenState extends State<HomeScreen> {
           subtitle: '本地通知、定时通知',
           icon: Icons.notifications_active,
           screen: const NotificationsScreen(),
+        ),
+        _DemoItem(
+          title: '引导教程',
+          subtitle: 'Intro.js风格的功能引导',
+          icon: Icons.help_outline,
+          screen: const TutorialScreen(),
+        ),
+      ],
+    ),
+    _CategoryItem(
+      title: '业务组件',
+      icon: Icons.business_center,
+      items: [
+        _DemoItem(
+          title: '金额输入',
+          subtitle: '数字键盘、金额格式化',
+          icon: Icons.attach_money,
+          screen: const MoneyInputScreen(),
         ),
       ],
     ),
