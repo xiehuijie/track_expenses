@@ -469,7 +469,9 @@ class _SQLiteTabState extends State<_SQLiteTab> {
                         trailing: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Text('ID: ${item['id']}', style: const TextStyle(color: Colors.grey)),
+                            Builder(
+                              builder: (context) => Text('ID: ${item['id']}', style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant)),
+                            ),
                             IconButton(
                               icon: const Icon(Icons.delete),
                               onPressed: () => _deleteItem(item['id']),
@@ -711,7 +713,7 @@ class _FileStorageTabState extends State<_FileStorageTab> {
                           Text(entry.key, style: const TextStyle(fontWeight: FontWeight.w500)),
                           Text(
                             entry.value,
-                            style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+                            style: TextStyle(fontSize: 12, color: Theme.of(context).colorScheme.onSurfaceVariant),
                           ),
                         ],
                       ),
@@ -827,7 +829,7 @@ class _FileStorageTabState extends State<_FileStorageTab> {
                       width: double.infinity,
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
-                        color: Colors.grey[200],
+                        color: Theme.of(context).colorScheme.surfaceContainerHighest,
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: SelectableText(
