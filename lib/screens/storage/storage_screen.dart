@@ -16,7 +16,8 @@ class StorageScreen extends StatefulWidget {
   State<StorageScreen> createState() => _StorageScreenState();
 }
 
-class _StorageScreenState extends State<StorageScreen> with SingleTickerProviderStateMixin {
+class _StorageScreenState extends State<StorageScreen>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -48,7 +49,11 @@ class _StorageScreenState extends State<StorageScreen> with SingleTickerProvider
       ),
       body: TabBarView(
         controller: _tabController,
-        children: const [_SharedPreferencesTab(), _SQLiteTab(), _FileStorageTab()],
+        children: const [
+          _SharedPreferencesTab(),
+          _SQLiteTab(),
+          _FileStorageTab(),
+        ],
       ),
     );
   }
@@ -112,7 +117,9 @@ class _SharedPreferencesTabState extends State<_SharedPreferencesTab> {
       _valueController.clear();
       await _loadAllData();
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('保存成功')));
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(const SnackBar(content: Text('保存成功')));
       }
     } catch (e) {
       _showError('保存失败: $e');
@@ -137,7 +144,9 @@ class _SharedPreferencesTabState extends State<_SharedPreferencesTab> {
       await prefs.clear();
       await _loadAllData();
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('已清除所有数据')));
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(const SnackBar(content: Text('已清除所有数据')));
       }
     } catch (e) {
       _showError('清除失败: $e');
@@ -146,9 +155,9 @@ class _SharedPreferencesTabState extends State<_SharedPreferencesTab> {
 
   void _showError(String message) {
     if (mounted) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(message), backgroundColor: Colors.red));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(message), backgroundColor: Colors.red),
+      );
     }
   }
 
@@ -167,19 +176,25 @@ class _SharedPreferencesTabState extends State<_SharedPreferencesTab> {
                 children: [
                   Text(
                     '添加数据',
-                    style: Theme.of(
-                      context,
-                    ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 16),
                   TextField(
                     controller: _keyController,
-                    decoration: const InputDecoration(labelText: '键 (Key)', hintText: '输入键名'),
+                    decoration: const InputDecoration(
+                      labelText: '键 (Key)',
+                      hintText: '输入键名',
+                    ),
                   ),
                   const SizedBox(height: 12),
                   TextField(
                     controller: _valueController,
-                    decoration: const InputDecoration(labelText: '值 (Value)', hintText: '输入值'),
+                    decoration: const InputDecoration(
+                      labelText: '值 (Value)',
+                      hintText: '输入值',
+                    ),
                   ),
                   const SizedBox(height: 16),
                   Row(
@@ -215,11 +230,13 @@ class _SharedPreferencesTabState extends State<_SharedPreferencesTab> {
                     children: [
                       Text(
                         '已保存数据',
-                        style: Theme.of(
-                          context,
-                        ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                        style: Theme.of(context).textTheme.titleMedium
+                            ?.copyWith(fontWeight: FontWeight.bold),
                       ),
-                      IconButton(icon: const Icon(Icons.refresh), onPressed: _loadAllData),
+                      IconButton(
+                        icon: const Icon(Icons.refresh),
+                        onPressed: _loadAllData,
+                      ),
                     ],
                   ),
                   const SizedBox(height: 8),
@@ -343,7 +360,9 @@ class _SQLiteTabState extends State<_SQLiteTab> {
       _descController.clear();
       await _loadItems();
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('添加成功')));
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(const SnackBar(content: Text('添加成功')));
       }
     } catch (e) {
       _showError('添加失败: $e');
@@ -372,9 +391,9 @@ class _SQLiteTabState extends State<_SQLiteTab> {
 
   void _showError(String message) {
     if (mounted) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(message), backgroundColor: Colors.red));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(message), backgroundColor: Colors.red),
+      );
     }
   }
 
@@ -397,19 +416,25 @@ class _SQLiteTabState extends State<_SQLiteTab> {
                 children: [
                   Text(
                     '添加记录',
-                    style: Theme.of(
-                      context,
-                    ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 16),
                   TextField(
                     controller: _nameController,
-                    decoration: const InputDecoration(labelText: '名称', hintText: '输入名称'),
+                    decoration: const InputDecoration(
+                      labelText: '名称',
+                      hintText: '输入名称',
+                    ),
                   ),
                   const SizedBox(height: 12),
                   TextField(
                     controller: _descController,
-                    decoration: const InputDecoration(labelText: '描述', hintText: '输入描述（可选）'),
+                    decoration: const InputDecoration(
+                      labelText: '描述',
+                      hintText: '输入描述（可选）',
+                    ),
                     maxLines: 2,
                   ),
                   const SizedBox(height: 16),
@@ -446,11 +471,13 @@ class _SQLiteTabState extends State<_SQLiteTab> {
                     children: [
                       Text(
                         '数据列表 (${_items.length} 条)',
-                        style: Theme.of(
-                          context,
-                        ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                        style: Theme.of(context).textTheme.titleMedium
+                            ?.copyWith(fontWeight: FontWeight.bold),
                       ),
-                      IconButton(icon: const Icon(Icons.refresh), onPressed: _loadItems),
+                      IconButton(
+                        icon: const Icon(Icons.refresh),
+                        onPressed: _loadItems,
+                      ),
                     ],
                   ),
                   const SizedBox(height: 8),
@@ -470,7 +497,14 @@ class _SQLiteTabState extends State<_SQLiteTab> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Builder(
-                              builder: (context) => Text('ID: ${item['id']}', style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant)),
+                              builder: (context) => Text(
+                                'ID: ${item['id']}',
+                                style: TextStyle(
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.onSurfaceVariant,
+                                ),
+                              ),
                             ),
                             IconButton(
                               icon: const Icon(Icons.delete),
@@ -572,7 +606,9 @@ class _FileStorageTabState extends State<_FileStorageTab> {
       _contentController.clear();
 
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('文件已保存: ${file.path}')));
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('文件已保存: ${file.path}')));
       }
     } catch (e) {
       _showError('保存失败: $e');
@@ -633,7 +669,9 @@ class _FileStorageTabState extends State<_FileStorageTab> {
         ],
       };
 
-      await file.writeAsString(const JsonEncoder.withIndent('  ').convert(jsonData));
+      await file.writeAsString(
+        const JsonEncoder.withIndent('  ').convert(jsonData),
+      );
 
       if (mounted) {
         ScaffoldMessenger.of(
@@ -674,9 +712,9 @@ class _FileStorageTabState extends State<_FileStorageTab> {
 
   void _showError(String message) {
     if (mounted) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(message), backgroundColor: Colors.red));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(message), backgroundColor: Colors.red),
+      );
     }
   }
 
@@ -699,9 +737,9 @@ class _FileStorageTabState extends State<_FileStorageTab> {
                 children: [
                   Text(
                     '系统目录',
-                    style: Theme.of(
-                      context,
-                    ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 8),
                   ...(_directories.entries.map((entry) {
@@ -710,10 +748,18 @@ class _FileStorageTabState extends State<_FileStorageTab> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(entry.key, style: const TextStyle(fontWeight: FontWeight.w500)),
+                          Text(
+                            entry.key,
+                            style: const TextStyle(fontWeight: FontWeight.w500),
+                          ),
                           Text(
                             entry.value,
-                            style: TextStyle(fontSize: 12, color: Theme.of(context).colorScheme.onSurfaceVariant),
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Theme.of(
+                                context,
+                              ).colorScheme.onSurfaceVariant,
+                            ),
                           ),
                         ],
                       ),
@@ -732,14 +778,17 @@ class _FileStorageTabState extends State<_FileStorageTab> {
                 children: [
                   Text(
                     '文本文件操作',
-                    style: Theme.of(
-                      context,
-                    ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 16),
                   TextField(
                     controller: _contentController,
-                    decoration: const InputDecoration(labelText: '文件内容', hintText: '输入要保存的内容'),
+                    decoration: const InputDecoration(
+                      labelText: '文件内容',
+                      hintText: '输入要保存的内容',
+                    ),
                     maxLines: 3,
                   ),
                   const SizedBox(height: 16),
@@ -775,9 +824,9 @@ class _FileStorageTabState extends State<_FileStorageTab> {
                 children: [
                   Text(
                     'JSON 文件操作',
-                    style: Theme.of(
-                      context,
-                    ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 16),
                   Row(
@@ -813,9 +862,9 @@ class _FileStorageTabState extends State<_FileStorageTab> {
                   children: [
                     Text(
                       '文件内容',
-                      style: Theme.of(
-                        context,
-                      ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     if (_filePath.isNotEmpty) ...[
                       const SizedBox(height: 4),
@@ -829,7 +878,9 @@ class _FileStorageTabState extends State<_FileStorageTab> {
                       width: double.infinity,
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.surfaceContainerHighest,
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: SelectableText(

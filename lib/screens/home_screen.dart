@@ -209,7 +209,11 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: colorScheme.inversePrimary,
         actions: [
           IconButton(
-            icon: Icon(theme.brightness == Brightness.light ? Icons.dark_mode : Icons.light_mode),
+            icon: Icon(
+              theme.brightness == Brightness.light
+                  ? Icons.dark_mode
+                  : Icons.light_mode,
+            ),
             onPressed: () {
               HapticFeedback.lightImpact();
               widget.onToggleTheme();
@@ -234,7 +238,10 @@ class _HomeScreenState extends State<HomeScreen> {
           setState(() => _selectedIndex = index);
         },
         destinations: _categories.map((category) {
-          return NavigationDestination(icon: Icon(category.icon), label: category.title);
+          return NavigationDestination(
+            icon: Icon(category.icon),
+            label: category.title,
+          );
         }).toList(),
       ),
     );
@@ -276,18 +283,28 @@ class _HomeScreenState extends State<HomeScreen> {
         transitionType: ContainerTransitionType.fadeThrough,
         transitionDuration: const Duration(milliseconds: 400),
         openBuilder: (context, _) => item.screen,
-        closedShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        closedShape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
         closedElevation: 2,
         closedBuilder: (context, openContainer) {
           return ListTile(
-            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: 16,
+              vertical: 8,
+            ),
             leading: CircleAvatar(
               backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-              child: Icon(item.icon, color: Theme.of(context).colorScheme.onPrimaryContainer),
+              child: Icon(
+                item.icon,
+                color: Theme.of(context).colorScheme.onPrimaryContainer,
+              ),
             ),
             title: Text(
               item.title,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
+              style: Theme.of(
+                context,
+              ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
             ),
             subtitle: Text(item.subtitle),
             trailing: const Icon(Icons.chevron_right),
@@ -319,7 +336,9 @@ class _HomeScreenState extends State<HomeScreen> {
               Wrap(
                 spacing: 8,
                 runSpacing: 8,
-                children: AppThemeProvider.getAllThemeColors().map((themeColor) {
+                children: AppThemeProvider.getAllThemeColors().map((
+                  themeColor,
+                ) {
                   final isSelected = widget.currentThemeColor == themeColor;
                   return InkWell(
                     onTap: () {
@@ -332,18 +351,22 @@ class _HomeScreenState extends State<HomeScreen> {
                       decoration: BoxDecoration(
                         color: themeColor.color,
                         shape: BoxShape.circle,
-                        border: isSelected ? Border.all(color: Colors.white, width: 3) : null,
+                        border: isSelected
+                            ? Border.all(color: Colors.white, width: 3)
+                            : null,
                         boxShadow: isSelected
                             ? [
                                 BoxShadow(
                                   color: themeColor.color.withOpacity(0.5),
                                   blurRadius: 8,
                                   spreadRadius: 2,
-                                )
+                                ),
                               ]
                             : null,
                       ),
-                      child: isSelected ? const Icon(Icons.check, color: Colors.white) : null,
+                      child: isSelected
+                          ? const Icon(Icons.check, color: Colors.white)
+                          : null,
                     ),
                   );
                 }).toList(),

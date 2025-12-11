@@ -11,7 +11,7 @@ class MoneyInputScreen extends StatefulWidget {
 class _MoneyInputScreenState extends State<MoneyInputScreen> {
   // Maximum digits allowed (10 digits = up to 99,999,999.99, approximately 100 million)
   static const int _maxDigits = 10;
-  
+
   final TextEditingController _amountController = TextEditingController();
   String _displayAmount = '0.00';
 
@@ -33,11 +33,14 @@ class _MoneyInputScreenState extends State<MoneyInputScreen> {
         withoutDecimal += value;
         // Keep only the last meaningful digits to prevent overflow
         if (withoutDecimal.length > _maxDigits) {
-          withoutDecimal = withoutDecimal.substring(withoutDecimal.length - _maxDigits);
+          withoutDecimal = withoutDecimal.substring(
+            withoutDecimal.length - _maxDigits,
+          );
         }
         // Insert decimal point 2 digits from the right for cents precision
         int length = withoutDecimal.length;
-        _displayAmount = '${withoutDecimal.substring(0, length - 2)}.${withoutDecimal.substring(length - 2)}';
+        _displayAmount =
+            '${withoutDecimal.substring(0, length - 2)}.${withoutDecimal.substring(length - 2)}';
       }
       _amountController.text = _displayAmount;
     });
@@ -50,7 +53,8 @@ class _MoneyInputScreenState extends State<MoneyInputScreen> {
       if (withoutDecimal.length > 2) {
         withoutDecimal = withoutDecimal.substring(0, withoutDecimal.length - 1);
         int length = withoutDecimal.length;
-        _displayAmount = '${withoutDecimal.substring(0, length - 2)}.${withoutDecimal.substring(length - 2)}';
+        _displayAmount =
+            '${withoutDecimal.substring(0, length - 2)}.${withoutDecimal.substring(length - 2)}';
       } else {
         _displayAmount = '0.00';
       }
@@ -91,9 +95,8 @@ class _MoneyInputScreenState extends State<MoneyInputScreen> {
                         children: [
                           Text(
                             '输入金额',
-                            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                ),
+                            style: Theme.of(context).textTheme.titleMedium
+                                ?.copyWith(fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(height: 16),
                           Row(
@@ -101,7 +104,10 @@ class _MoneyInputScreenState extends State<MoneyInputScreen> {
                             children: [
                               Text(
                                 '¥',
-                                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headlineMedium
+                                    ?.copyWith(
                                       color: colorScheme.primary,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -110,7 +116,10 @@ class _MoneyInputScreenState extends State<MoneyInputScreen> {
                               Expanded(
                                 child: Text(
                                   _displayAmount,
-                                  style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .displayMedium
+                                      ?.copyWith(
                                         color: colorScheme.primary,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -132,9 +141,8 @@ class _MoneyInputScreenState extends State<MoneyInputScreen> {
                         children: [
                           Text(
                             '常用金额',
-                            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                ),
+                            style: Theme.of(context).textTheme.titleMedium
+                                ?.copyWith(fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(height: 12),
                           Wrap(
@@ -216,7 +224,11 @@ class _MoneyInputScreenState extends State<MoneyInputScreen> {
           ),
           Row(
             children: [
-              _buildKeypadButton('C', onPressed: _onClear, color: colorScheme.error),
+              _buildKeypadButton(
+                'C',
+                onPressed: _onClear,
+                color: colorScheme.error,
+              ),
               _buildKeypadButton('0'),
               _buildKeypadButton('⌫', onPressed: _onBackspace),
             ],
@@ -227,9 +239,9 @@ class _MoneyInputScreenState extends State<MoneyInputScreen> {
             child: FilledButton(
               onPressed: () {
                 HapticFeedback.mediumImpact();
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('金额: ¥$_displayAmount')),
-                );
+                ScaffoldMessenger.of(
+                  context,
+                ).showSnackBar(SnackBar(content: Text('金额: ¥$_displayAmount')));
               },
               style: FilledButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 16),
@@ -242,7 +254,11 @@ class _MoneyInputScreenState extends State<MoneyInputScreen> {
     );
   }
 
-  Widget _buildKeypadButton(String value, {VoidCallback? onPressed, Color? color}) {
+  Widget _buildKeypadButton(
+    String value, {
+    VoidCallback? onPressed,
+    Color? color,
+  }) {
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.all(4),
@@ -260,7 +276,9 @@ class _MoneyInputScreenState extends State<MoneyInputScreen> {
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
-                  color: color != null ? Theme.of(context).colorScheme.onError : null,
+                  color: color != null
+                      ? Theme.of(context).colorScheme.onError
+                      : null,
                 ),
               ),
             ),

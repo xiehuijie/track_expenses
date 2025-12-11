@@ -8,7 +8,8 @@ class EffectsScreen extends StatefulWidget {
   State<EffectsScreen> createState() => _EffectsScreenState();
 }
 
-class _EffectsScreenState extends State<EffectsScreen> with TickerProviderStateMixin {
+class _EffectsScreenState extends State<EffectsScreen>
+    with TickerProviderStateMixin {
   late ConfettiController _confettiController;
   late AnimationController _scaleController;
   late AnimationController _rotationController;
@@ -17,7 +18,9 @@ class _EffectsScreenState extends State<EffectsScreen> with TickerProviderStateM
   @override
   void initState() {
     super.initState();
-    _confettiController = ConfettiController(duration: const Duration(seconds: 3));
+    _confettiController = ConfettiController(
+      duration: const Duration(seconds: 3),
+    );
     _scaleController = AnimationController(
       duration: const Duration(milliseconds: 500),
       vsync: this,
@@ -59,10 +62,7 @@ class _EffectsScreenState extends State<EffectsScreen> with TickerProviderStateM
                   title: '烟花庆祝效果',
                   child: Column(
                     children: [
-                      const Text(
-                        '点击按钮触发烟花效果',
-                        style: TextStyle(fontSize: 16),
-                      ),
+                      const Text('点击按钮触发烟花效果', style: TextStyle(fontSize: 16)),
                       const SizedBox(height: 16),
                       FilledButton.icon(
                         onPressed: () {
@@ -88,7 +88,11 @@ class _EffectsScreenState extends State<EffectsScreen> with TickerProviderStateM
                             color: colorScheme.primary,
                             borderRadius: BorderRadius.circular(12),
                           ),
-                          child: const Icon(Icons.favorite, color: Colors.white, size: 50),
+                          child: const Icon(
+                            Icons.favorite,
+                            color: Colors.white,
+                            size: 50,
+                          ),
                         ),
                       ),
                       const SizedBox(height: 16),
@@ -110,7 +114,10 @@ class _EffectsScreenState extends State<EffectsScreen> with TickerProviderStateM
                     runSpacing: 16,
                     alignment: WrapAlignment.center,
                     children: [
-                      _buildLoadingIndicator('圆形', const CircularProgressIndicator()),
+                      _buildLoadingIndicator(
+                        '圆形',
+                        const CircularProgressIndicator(),
+                      ),
                       _buildLoadingIndicator(
                         '线性',
                         const SizedBox(
@@ -166,7 +173,10 @@ class _EffectsScreenState extends State<EffectsScreen> with TickerProviderStateM
                   title: '旋转动画',
                   child: Center(
                     child: RotationTransition(
-                      turns: Tween<double>(begin: 0.0, end: 1.0).animate(_rotationController),
+                      turns: Tween<double>(
+                        begin: 0.0,
+                        end: 1.0,
+                      ).animate(_rotationController),
                       child: Icon(
                         Icons.sync,
                         size: 60,
@@ -210,9 +220,9 @@ class _EffectsScreenState extends State<EffectsScreen> with TickerProviderStateM
           children: [
             Text(
               title,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
             child,
@@ -226,11 +236,7 @@ class _EffectsScreenState extends State<EffectsScreen> with TickerProviderStateM
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        SizedBox(
-          width: 50,
-          height: 50,
-          child: Center(child: indicator),
-        ),
+        SizedBox(width: 50, height: 50, child: Center(child: indicator)),
         const SizedBox(height: 8),
         Text(label, style: const TextStyle(fontSize: 12)),
       ],

@@ -8,7 +8,8 @@ class NavigationScreen extends StatefulWidget {
   State<NavigationScreen> createState() => _NavigationScreenState();
 }
 
-class _NavigationScreenState extends State<NavigationScreen> with SingleTickerProviderStateMixin {
+class _NavigationScreenState extends State<NavigationScreen>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
   int _bottomNavIndex = 0;
   int _railIndex = 0;
@@ -97,10 +98,22 @@ class _NavigationScreenState extends State<NavigationScreen> with SingleTickerPr
                         setState(() => _bottomNavIndex = index);
                       },
                       items: const [
-                        BottomNavigationBarItem(icon: Icon(Icons.home), label: '首页'),
-                        BottomNavigationBarItem(icon: Icon(Icons.search), label: '搜索'),
-                        BottomNavigationBarItem(icon: Icon(Icons.notifications), label: '通知'),
-                        BottomNavigationBarItem(icon: Icon(Icons.person), label: '我的'),
+                        BottomNavigationBarItem(
+                          icon: Icon(Icons.home),
+                          label: '首页',
+                        ),
+                        BottomNavigationBarItem(
+                          icon: Icon(Icons.search),
+                          label: '搜索',
+                        ),
+                        BottomNavigationBarItem(
+                          icon: Icon(Icons.notifications),
+                          label: '通知',
+                        ),
+                        BottomNavigationBarItem(
+                          icon: Icon(Icons.person),
+                          label: '我的',
+                        ),
                       ],
                     ),
                   ),
@@ -220,7 +233,9 @@ class _NavigationScreenState extends State<NavigationScreen> with SingleTickerPr
           children: [
             Text(
               title,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+              style: Theme.of(
+                context,
+              ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
             child,
@@ -256,7 +271,10 @@ class _NavigationScreenState extends State<NavigationScreen> with SingleTickerPr
               preferredSize: Size.fromHeight(48),
               child: Padding(
                 padding: EdgeInsets.all(8.0),
-                child: SearchBar(hintText: '搜索...', leading: Icon(Icons.search)),
+                child: SearchBar(
+                  hintText: '搜索...',
+                  leading: Icon(Icons.search),
+                ),
               ),
             ),
           ),
@@ -292,7 +310,11 @@ class _NavigationScreenState extends State<NavigationScreen> with SingleTickerPr
                       ),
                     ),
                     child: const Center(
-                      child: Icon(Icons.landscape, size: 80, color: Colors.white54),
+                      child: Icon(
+                        Icons.landscape,
+                        size: 80,
+                        color: Colors.white54,
+                      ),
                     ),
                   ),
                 ),
@@ -322,15 +344,26 @@ class _NavigationScreenState extends State<NavigationScreen> with SingleTickerPr
               padding: EdgeInsets.zero,
               children: [
                 DrawerHeader(
-                  decoration: BoxDecoration(color: Theme.of(context).colorScheme.primaryContainer),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.primaryContainer,
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      const CircleAvatar(radius: 30, child: Icon(Icons.person, size: 30)),
+                      const CircleAvatar(
+                        radius: 30,
+                        child: Icon(Icons.person, size: 30),
+                      ),
                       const SizedBox(height: 8),
-                      Text('用户名', style: Theme.of(context).textTheme.titleMedium),
-                      Text('user@example.com', style: Theme.of(context).textTheme.bodySmall),
+                      Text(
+                        '用户名',
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      Text(
+                        'user@example.com',
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ),
                     ],
                   ),
                 ),
@@ -372,13 +405,18 @@ class _NavigationScreenState extends State<NavigationScreen> with SingleTickerPr
     HapticFeedback.lightImpact();
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const _NavigationDrawerDemoPage()),
+      MaterialPageRoute(
+        builder: (context) => const _NavigationDrawerDemoPage(),
+      ),
     );
   }
 
   void _showStepperDemo(BuildContext context) {
     HapticFeedback.lightImpact();
-    Navigator.push(context, MaterialPageRoute(builder: (context) => const _StepperDemoPage()));
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const _StepperDemoPage()),
+    );
   }
 }
 
@@ -386,7 +424,8 @@ class _NavigationDrawerDemoPage extends StatefulWidget {
   const _NavigationDrawerDemoPage();
 
   @override
-  State<_NavigationDrawerDemoPage> createState() => _NavigationDrawerDemoPageState();
+  State<_NavigationDrawerDemoPage> createState() =>
+      _NavigationDrawerDemoPageState();
 }
 
 class _NavigationDrawerDemoPageState extends State<_NavigationDrawerDemoPage> {
@@ -466,7 +505,9 @@ class _StepperDemoPageState extends State<_StepperDemoPage> {
           if (_currentStep < 2) {
             setState(() => _currentStep++);
           } else {
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('完成所有步骤！')));
+            ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(const SnackBar(content: Text('完成所有步骤！')));
           }
         },
         onStepCancel: () {
@@ -483,14 +524,18 @@ class _StepperDemoPageState extends State<_StepperDemoPage> {
           Step(
             title: const Text('账户信息'),
             subtitle: const Text('设置您的账户'),
-            content: const TextField(decoration: InputDecoration(labelText: '用户名')),
+            content: const TextField(
+              decoration: InputDecoration(labelText: '用户名'),
+            ),
             isActive: _currentStep >= 0,
             state: _currentStep > 0 ? StepState.complete : StepState.indexed,
           ),
           Step(
             title: const Text('个人资料'),
             subtitle: const Text('完善您的资料'),
-            content: const TextField(decoration: InputDecoration(labelText: '姓名')),
+            content: const TextField(
+              decoration: InputDecoration(labelText: '姓名'),
+            ),
             isActive: _currentStep >= 1,
             state: _currentStep > 1 ? StepState.complete : StepState.indexed,
           ),

@@ -48,7 +48,8 @@ class _ProgressScreenState extends State<ProgressScreen> {
                   const SizedBox(height: 16),
                   Slider(
                     value: _progressValue,
-                    onChanged: (value) => setState(() => _progressValue = value),
+                    onChanged: (value) =>
+                        setState(() => _progressValue = value),
                   ),
                 ],
               ),
@@ -68,7 +69,10 @@ class _ProgressScreenState extends State<ProgressScreen> {
                     percent: _progressValue,
                     center: Text(
                       '${(_progressValue * 100).toInt()}%',
-                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20.0,
+                      ),
                     ),
                     circularStrokeCap: CircularStrokeCap.round,
                     progressColor: colorScheme.primary,
@@ -79,7 +83,11 @@ class _ProgressScreenState extends State<ProgressScreen> {
                     lineWidth: 13.0,
                     animation: true,
                     percent: 0.7,
-                    center: const Icon(Icons.check, size: 40.0, color: Colors.green),
+                    center: const Icon(
+                      Icons.check,
+                      size: 40.0,
+                      color: Colors.green,
+                    ),
                     circularStrokeCap: CircularStrokeCap.round,
                     progressColor: Colors.green,
                     backgroundColor: colorScheme.surfaceContainerHighest,
@@ -91,7 +99,10 @@ class _ProgressScreenState extends State<ProgressScreen> {
                     percent: 0.3,
                     center: const Text(
                       '30/100',
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16.0,
+                      ),
                     ),
                     circularStrokeCap: CircularStrokeCap.butt,
                     progressColor: colorScheme.secondary,
@@ -126,7 +137,10 @@ class _ProgressScreenState extends State<ProgressScreen> {
                       child: Center(
                         child: Text(
                           '${index + 1}',
-                          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
@@ -173,7 +187,11 @@ class _ProgressScreenState extends State<ProgressScreen> {
                     selectedGradientColor: LinearGradient(
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
-                      colors: [colorScheme.primary, colorScheme.secondary, colorScheme.tertiary],
+                      colors: [
+                        colorScheme.primary,
+                        colorScheme.secondary,
+                        colorScheme.tertiary,
+                      ],
                     ),
                     unselectedColor: colorScheme.surfaceContainerHighest,
                     roundedEdges: const Radius.circular(10),
@@ -205,9 +223,9 @@ class _ProgressScreenState extends State<ProgressScreen> {
           children: [
             Text(
               title,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
             child,
