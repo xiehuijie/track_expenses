@@ -25,9 +25,9 @@ class _ButtonsScreenState extends State<ButtonsScreen> {
   }
 
   void _showSnackBar(String message) {
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text(message), duration: const Duration(seconds: 1)));
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(message), duration: const Duration(seconds: 1)),
+    );
   }
 
   @override
@@ -245,9 +245,21 @@ class _ButtonsScreenState extends State<ButtonsScreen> {
               title: 'Segmented Button',
               child: SegmentedButton<int>(
                 segments: const [
-                  ButtonSegment(value: 0, label: Text('日'), icon: Icon(Icons.wb_sunny)),
-                  ButtonSegment(value: 1, label: Text('周'), icon: Icon(Icons.date_range)),
-                  ButtonSegment(value: 2, label: Text('月'), icon: Icon(Icons.calendar_month)),
+                  ButtonSegment(
+                    value: 0,
+                    label: Text('日'),
+                    icon: Icon(Icons.wb_sunny),
+                  ),
+                  ButtonSegment(
+                    value: 1,
+                    label: Text('周'),
+                    icon: Icon(Icons.date_range),
+                  ),
+                  ButtonSegment(
+                    value: 2,
+                    label: Text('月'),
+                    icon: Icon(Icons.calendar_month),
+                  ),
                 ],
                 selected: {_selectedIndex},
                 onSelectionChanged: (Set<int> newSelection) {
@@ -329,7 +341,9 @@ class _ButtonsScreenState extends State<ButtonsScreen> {
           children: [
             Text(
               title,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+              style: Theme.of(
+                context,
+              ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
             child,

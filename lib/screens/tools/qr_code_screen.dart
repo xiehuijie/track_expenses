@@ -9,7 +9,9 @@ class QRCodeScreen extends StatefulWidget {
 }
 
 class _QRCodeScreenState extends State<QRCodeScreen> {
-  final TextEditingController _textController = TextEditingController(text: 'https://flutter.dev');
+  final TextEditingController _textController = TextEditingController(
+    text: 'https://flutter.dev',
+  );
   String _qrData = 'https://flutter.dev';
 
   @override
@@ -41,8 +43,8 @@ class _QRCodeScreenState extends State<QRCodeScreen> {
                     Text(
                       '生成二维码',
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     const SizedBox(height: 16),
                     TextField(
@@ -77,15 +79,15 @@ class _QRCodeScreenState extends State<QRCodeScreen> {
                     Text(
                       '二维码预览',
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     const SizedBox(height: 8),
                     Text(
                       '注意: 白色背景确保二维码可被正确扫描',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: colorScheme.onSurfaceVariant,
-                          ),
+                        color: colorScheme.onSurfaceVariant,
+                      ),
                     ),
                     const SizedBox(height: 8),
                     Container(
@@ -114,8 +116,8 @@ class _QRCodeScreenState extends State<QRCodeScreen> {
                     Text(
                       '内容: $_qrData',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: colorScheme.onSurfaceVariant,
-                          ),
+                        color: colorScheme.onSurfaceVariant,
+                      ),
                       textAlign: TextAlign.center,
                     ),
                   ],
@@ -132,8 +134,8 @@ class _QRCodeScreenState extends State<QRCodeScreen> {
                     Text(
                       '自定义样式',
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     const SizedBox(height: 16),
                     Wrap(
@@ -188,9 +190,7 @@ class _QRCodeScreenState extends State<QRCodeScreen> {
             backgroundColor: Colors.white,
             foregroundColor: foregroundColor ?? Colors.black,
             embeddedImage: embeddedImage,
-            embeddedImageStyle: const QrEmbeddedImageStyle(
-              size: Size(30, 30),
-            ),
+            embeddedImageStyle: const QrEmbeddedImageStyle(size: Size(30, 30)),
             gapless: gapless,
             dataModuleStyle: QrDataModuleStyle(
               dataModuleShape: shape ?? QrDataModuleShape.square,

@@ -28,14 +28,14 @@ class _TutorialScreenState extends State<TutorialScreen> {
       paddingFocus: 10,
       opacityShadow: 0.8,
       onFinish: () {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('教程完成！')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(const SnackBar(content: Text('教程完成！')));
       },
       onSkip: () {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('教程已跳过')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(const SnackBar(content: Text('教程已跳过')));
         return true;
       },
     );
@@ -222,8 +222,8 @@ class _TutorialScreenState extends State<TutorialScreen> {
                     Text(
                       '功能引导演示',
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     const SizedBox(height: 16),
                     const Text(
@@ -250,8 +250,8 @@ class _TutorialScreenState extends State<TutorialScreen> {
                     Text(
                       '功能按钮',
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     const SizedBox(height: 16),
                     _buildFeatureButton(
@@ -295,8 +295,8 @@ class _TutorialScreenState extends State<TutorialScreen> {
                     Text(
                       '提示',
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     const SizedBox(height: 16),
                     const Text(
@@ -333,9 +333,9 @@ class _TutorialScreenState extends State<TutorialScreen> {
         subtitle: Text(description),
         trailing: const Icon(Icons.chevron_right),
         onTap: () {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('点击了 $title')),
-          );
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text('点击了 $title')));
         },
       ),
     );

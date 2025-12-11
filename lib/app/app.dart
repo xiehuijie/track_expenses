@@ -18,7 +18,9 @@ class _MaterialShowcaseAppState extends State<MaterialShowcaseApp> {
 
   void _toggleTheme() {
     setState(() {
-      _themeMode = _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
+      _themeMode = _themeMode == ThemeMode.light
+          ? ThemeMode.dark
+          : ThemeMode.light;
     });
   }
 
@@ -48,10 +50,7 @@ class _MaterialShowcaseAppState extends State<MaterialShowcaseApp> {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: const [
-        Locale('zh', 'CN'),
-        Locale('en', 'US'),
-      ],
+      supportedLocales: const [Locale('zh', 'CN'), Locale('en', 'US')],
       home: HomeScreen(
         onToggleTheme: _toggleTheme,
         onChangeThemeColor: _changeThemeColor,

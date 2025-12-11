@@ -21,8 +21,21 @@ class _CalendarScreenState extends State<CalendarScreen> {
     // Add some sample events
     final today = DateTime.now();
     _events[DateTime(today.year, today.month, today.day)] = ['会议', '购物'];
-    _events[DateTime(today.year, today.month, today.day).add(const Duration(days: 1))] = ['运动'];
-    _events[DateTime(today.year, today.month, today.day).add(const Duration(days: 5))] = ['生日聚会', '晚餐'];
+    _events[DateTime(
+      today.year,
+      today.month,
+      today.day,
+    ).add(const Duration(days: 1))] = [
+      '运动',
+    ];
+    _events[DateTime(
+      today.year,
+      today.month,
+      today.day,
+    ).add(const Duration(days: 5))] = [
+      '生日聚会',
+      '晚餐',
+    ];
   }
 
   List<String> _getEventsForDay(DateTime day) {
@@ -76,7 +89,9 @@ class _CalendarScreenState extends State<CalendarScreen> {
                       color: colorScheme.primary,
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    formatButtonTextStyle: TextStyle(color: colorScheme.onPrimary),
+                    formatButtonTextStyle: TextStyle(
+                      color: colorScheme.onPrimary,
+                    ),
                   ),
                   onDaySelected: (selectedDay, focusedDay) {
                     setState(() {
@@ -105,8 +120,8 @@ class _CalendarScreenState extends State<CalendarScreen> {
                     Text(
                       '选中日期的事件',
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     const SizedBox(height: 16),
                     if (_selectedDay != null) ...[
@@ -120,7 +135,11 @@ class _CalendarScreenState extends State<CalendarScreen> {
                           padding: const EdgeInsets.symmetric(vertical: 4),
                           child: Row(
                             children: [
-                              Icon(Icons.circle, size: 8, color: colorScheme.primary),
+                              Icon(
+                                Icons.circle,
+                                size: 8,
+                                color: colorScheme.primary,
+                              ),
                               const SizedBox(width: 8),
                               Text(event),
                             ],

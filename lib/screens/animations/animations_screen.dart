@@ -9,7 +9,8 @@ class AnimationsScreen extends StatefulWidget {
   State<AnimationsScreen> createState() => _AnimationsScreenState();
 }
 
-class _AnimationsScreenState extends State<AnimationsScreen> with SingleTickerProviderStateMixin {
+class _AnimationsScreenState extends State<AnimationsScreen>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   bool _isExpanded = false;
   bool _isVisible = true;
@@ -20,7 +21,10 @@ class _AnimationsScreenState extends State<AnimationsScreen> with SingleTickerPr
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(duration: const Duration(seconds: 2), vsync: this);
+    _controller = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    );
   }
 
   @override
@@ -63,16 +67,24 @@ class _AnimationsScreenState extends State<AnimationsScreen> with SingleTickerPr
                         height: _containerSize,
                         decoration: BoxDecoration(
                           color: _containerColor,
-                          borderRadius: BorderRadius.circular(_containerSize == 100 ? 16 : 75),
+                          borderRadius: BorderRadius.circular(
+                            _containerSize == 100 ? 16 : 75,
+                          ),
                         ),
                         child: const Center(
-                          child: Text('点击', style: TextStyle(color: Colors.white)),
+                          child: Text(
+                            '点击',
+                            style: TextStyle(color: Colors.white),
+                          ),
                         ),
                       ),
                     ),
                   ),
                   const SizedBox(height: 8),
-                  const Text('点击方块查看动画效果', style: TextStyle(color: Colors.grey)),
+                  const Text(
+                    '点击方块查看动画效果',
+                    style: TextStyle(color: Colors.grey),
+                  ),
                 ],
               ),
             ),
@@ -117,7 +129,10 @@ class _AnimationsScreenState extends State<AnimationsScreen> with SingleTickerPr
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: const Center(
-                        child: Text('视图 A', style: TextStyle(color: Colors.white)),
+                        child: Text(
+                          '视图 A',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                     ),
                     secondChild: Container(
@@ -128,7 +143,10 @@ class _AnimationsScreenState extends State<AnimationsScreen> with SingleTickerPr
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: const Center(
-                        child: Text('视图 B', style: TextStyle(color: Colors.white)),
+                        child: Text(
+                          '视图 B',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                     ),
                     crossFadeState: _isVisible
@@ -205,15 +223,22 @@ class _AnimationsScreenState extends State<AnimationsScreen> with SingleTickerPr
                     spacing: 16,
                     runSpacing: 16,
                     children: List.generate(4, (index) {
-                      final colors = [Colors.red, Colors.blue, Colors.green, Colors.orange];
+                      final colors = [
+                        Colors.red,
+                        Colors.blue,
+                        Colors.green,
+                        Colors.orange,
+                      ];
                       return GestureDetector(
                         onTap: () {
                           HapticFeedback.lightImpact();
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  _HeroDetailPage(color: colors[index], heroTag: 'hero_$index'),
+                              builder: (context) => _HeroDetailPage(
+                                color: colors[index],
+                                heroTag: 'hero_$index',
+                              ),
                             ),
                           );
                         },
@@ -251,13 +276,19 @@ class _AnimationsScreenState extends State<AnimationsScreen> with SingleTickerPr
                     child: const Text('水平'),
                   ),
                   ElevatedButton(
-                    onPressed: () =>
-                        _navigateWithAnimation(context, SharedAxisTransitionType.vertical, '垂直共享轴'),
+                    onPressed: () => _navigateWithAnimation(
+                      context,
+                      SharedAxisTransitionType.vertical,
+                      '垂直共享轴',
+                    ),
                     child: const Text('垂直'),
                   ),
                   ElevatedButton(
-                    onPressed: () =>
-                        _navigateWithAnimation(context, SharedAxisTransitionType.scaled, '缩放共享轴'),
+                    onPressed: () => _navigateWithAnimation(
+                      context,
+                      SharedAxisTransitionType.scaled,
+                      '缩放共享轴',
+                    ),
                     child: const Text('缩放'),
                   ),
                   ElevatedButton(
@@ -277,10 +308,13 @@ class _AnimationsScreenState extends State<AnimationsScreen> with SingleTickerPr
               child: OpenContainer(
                 transitionType: ContainerTransitionType.fadeThrough,
                 transitionDuration: const Duration(milliseconds: 500),
-                closedShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                closedShape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
                 closedElevation: 0,
                 closedColor: Theme.of(context).colorScheme.primaryContainer,
-                openBuilder: (context, action) => const _OpenContainerDetailPage(),
+                openBuilder: (context, action) =>
+                    const _OpenContainerDetailPage(),
                 closedBuilder: (context, action) => ListTile(
                   leading: const CircleAvatar(child: Icon(Icons.open_in_new)),
                   title: const Text('点击展开'),
@@ -307,10 +341,12 @@ class _AnimationsScreenState extends State<AnimationsScreen> with SingleTickerPr
               child: Column(
                 children: [
                   RotationTransition(
-                    turns: Tween(
-                      begin: 0.0,
-                      end: 1.0,
-                    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut)),
+                    turns: Tween(begin: 0.0, end: 1.0).animate(
+                      CurvedAnimation(
+                        parent: _controller,
+                        curve: Curves.easeInOut,
+                      ),
+                    ),
                     child: Container(
                       width: 80,
                       height: 80,
@@ -318,7 +354,11 @@ class _AnimationsScreenState extends State<AnimationsScreen> with SingleTickerPr
                         color: Theme.of(context).colorScheme.primary,
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: const Icon(Icons.sync, color: Colors.white, size: 40),
+                      child: const Icon(
+                        Icons.sync,
+                        color: Colors.white,
+                        size: 40,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -381,7 +421,9 @@ class _AnimationsScreenState extends State<AnimationsScreen> with SingleTickerPr
           children: [
             Text(
               title,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+              style: Theme.of(
+                context,
+              ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
             child,
@@ -391,12 +433,17 @@ class _AnimationsScreenState extends State<AnimationsScreen> with SingleTickerPr
     );
   }
 
-  void _navigateWithAnimation(BuildContext context, SharedAxisTransitionType type, String title) {
+  void _navigateWithAnimation(
+    BuildContext context,
+    SharedAxisTransitionType type,
+    String title,
+  ) {
     HapticFeedback.lightImpact();
     Navigator.push(
       context,
       PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) => _TransitionDemoPage(title: title),
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            _TransitionDemoPage(title: title),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           return SharedAxisTransition(
             animation: animation,
@@ -432,10 +479,10 @@ class _AnimationsScreenState extends State<AnimationsScreen> with SingleTickerPr
             const _TransitionDemoPage(title: '滑动动画'),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           return SlideTransition(
-            position: Tween<Offset>(
-              begin: const Offset(1, 0),
-              end: Offset.zero,
-            ).animate(CurvedAnimation(parent: animation, curve: Curves.easeOut)),
+            position: Tween<Offset>(begin: const Offset(1, 0), end: Offset.zero)
+                .animate(
+                  CurvedAnimation(parent: animation, curve: Curves.easeOut),
+                ),
             child: child,
           );
         },
@@ -445,7 +492,10 @@ class _AnimationsScreenState extends State<AnimationsScreen> with SingleTickerPr
 
   void _showAnimatedListDemo(BuildContext context) {
     HapticFeedback.lightImpact();
-    Navigator.push(context, MaterialPageRoute(builder: (context) => const _AnimatedListDemoPage()));
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const _AnimatedListDemoPage()),
+    );
   }
 }
 
@@ -465,7 +515,10 @@ class _HeroDetailPage extends StatelessWidget {
           child: Container(
             width: 200,
             height: 200,
-            decoration: BoxDecoration(color: color, borderRadius: BorderRadius.circular(24)),
+            decoration: BoxDecoration(
+              color: color,
+              borderRadius: BorderRadius.circular(24),
+            ),
             child: const Icon(Icons.star, color: Colors.white, size: 80),
           ),
         ),
@@ -487,7 +540,11 @@ class _TransitionDemoPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.check_circle, size: 80, color: Theme.of(context).colorScheme.primary),
+            Icon(
+              Icons.check_circle,
+              size: 80,
+              color: Theme.of(context).colorScheme.primary,
+            ),
             const SizedBox(height: 16),
             Text(title, style: Theme.of(context).textTheme.headlineMedium),
             const SizedBox(height: 8),
@@ -512,7 +569,10 @@ class _OpenContainerDetailPage extends StatelessWidget {
           children: [
             const Icon(Icons.open_in_new, size: 80),
             const SizedBox(height: 16),
-            Text('OpenContainer 展开', style: Theme.of(context).textTheme.headlineMedium),
+            Text(
+              'OpenContainer 展开',
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
             const SizedBox(height: 8),
             const Text('这是使用 OpenContainer 打开的详情页'),
           ],
@@ -547,7 +607,9 @@ class _AnimatedListDemoPageState extends State<_AnimatedListDemoPage> {
         initialItemCount: _items.length,
         itemBuilder: (context, index, animation) {
           return SlideTransition(
-            position: animation.drive(Tween(begin: const Offset(1, 0), end: Offset.zero)),
+            position: animation.drive(
+              Tween(begin: const Offset(1, 0), end: Offset.zero),
+            ),
             child: FadeTransition(
               opacity: animation,
               child: Card(
@@ -563,7 +625,10 @@ class _AnimatedListDemoPageState extends State<_AnimatedListDemoPage> {
           );
         },
       ),
-      floatingActionButton: FloatingActionButton(onPressed: _addItem, child: const Icon(Icons.add)),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _addItem,
+        child: const Icon(Icons.add),
+      ),
     );
   }
 
@@ -582,7 +647,9 @@ class _AnimatedListDemoPageState extends State<_AnimatedListDemoPage> {
     _listKey.currentState?.removeItem(
       index,
       (context, animation) => SlideTransition(
-        position: animation.drive(Tween(begin: const Offset(-1, 0), end: Offset.zero)),
+        position: animation.drive(
+          Tween(begin: const Offset(-1, 0), end: Offset.zero),
+        ),
         child: FadeTransition(
           opacity: animation,
           child: Card(child: ListTile(title: Text(removedItem))),

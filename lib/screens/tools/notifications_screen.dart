@@ -10,7 +10,8 @@ class NotificationsScreen extends StatefulWidget {
 }
 
 class _NotificationsScreenState extends State<NotificationsScreen> {
-  final FlutterLocalNotificationsPlugin _notificationsPlugin = FlutterLocalNotificationsPlugin();
+  final FlutterLocalNotificationsPlugin _notificationsPlugin =
+      FlutterLocalNotificationsPlugin();
   bool _isInitialized = false;
 
   @override
@@ -20,7 +21,9 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
   }
 
   Future<void> _initializeNotifications() async {
-    const androidSettings = AndroidInitializationSettings('@mipmap/ic_launcher');
+    const androidSettings = AndroidInitializationSettings(
+      '@mipmap/ic_launcher',
+    );
     const iosSettings = DarwinInitializationSettings(
       requestAlertPermission: true,
       requestBadgePermission: true,
@@ -57,7 +60,10 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
       priority: Priority.high,
     );
     const iosDetails = DarwinNotificationDetails();
-    const details = NotificationDetails(android: androidDetails, iOS: iosDetails);
+    const details = NotificationDetails(
+      android: androidDetails,
+      iOS: iosDetails,
+    );
 
     await _notificationsPlugin.show(
       0,
@@ -85,7 +91,10 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
       ),
     );
     const iosDetails = DarwinNotificationDetails();
-    const details = NotificationDetails(android: androidDetails, iOS: iosDetails);
+    const details = NotificationDetails(
+      android: androidDetails,
+      iOS: iosDetails,
+    );
 
     await _notificationsPlugin.show(
       1,
@@ -109,15 +118,13 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
       onlyAlertOnce: true,
     );
     const iosDetails = DarwinNotificationDetails();
-    const details = NotificationDetails(android: androidDetails, iOS: iosDetails);
+    const details = NotificationDetails(
+      android: androidDetails,
+      iOS: iosDetails,
+    );
 
     // Show initial notification
-    await _notificationsPlugin.show(
-      2,
-      '下载中',
-      '正在下载文件...',
-      details,
-    );
+    await _notificationsPlugin.show(2, '下载中', '正在下载文件...', details);
 
     // Update progress
     for (int i = 0; i <= 100; i += 20) {
@@ -163,7 +170,10 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
       priority: Priority.high,
     );
     const iosDetails = DarwinNotificationDetails();
-    const details = NotificationDetails(android: androidDetails, iOS: iosDetails);
+    const details = NotificationDetails(
+      android: androidDetails,
+      iOS: iosDetails,
+    );
 
     await _notificationsPlugin.show(
       3,
@@ -177,9 +187,9 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
   Future<void> _cancelAllNotifications() async {
     await _notificationsPlugin.cancelAll();
     if (mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('已取消所有通知')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('已取消所有通知')));
     }
   }
 
@@ -206,9 +216,8 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                         children: [
                           Text(
                             '基础通知',
-                            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                ),
+                            style: Theme.of(context).textTheme.titleMedium
+                                ?.copyWith(fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(height: 16),
                           FilledButton.icon(
@@ -235,9 +244,8 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                         children: [
                           Text(
                             '进度通知',
-                            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                ),
+                            style: Theme.of(context).textTheme.titleMedium
+                                ?.copyWith(fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(height: 16),
                           FilledButton.icon(
@@ -258,9 +266,8 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                         children: [
                           Text(
                             '定时通知',
-                            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                ),
+                            style: Theme.of(context).textTheme.titleMedium
+                                ?.copyWith(fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(height: 16),
                           FilledButton.icon(
@@ -281,9 +288,8 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                         children: [
                           Text(
                             '管理',
-                            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                ),
+                            style: Theme.of(context).textTheme.titleMedium
+                                ?.copyWith(fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(height: 16),
                           OutlinedButton.icon(
@@ -298,9 +304,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                 ],
               ),
             )
-          : const Center(
-              child: CircularProgressIndicator(),
-            ),
+          : const Center(child: CircularProgressIndicator()),
     );
   }
 }

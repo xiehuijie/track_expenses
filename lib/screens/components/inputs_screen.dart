@@ -67,7 +67,11 @@ class _InputsScreenState extends State<InputsScreen> {
                         hintText: '请输入密码',
                         prefixIcon: const Icon(Icons.lock),
                         suffixIcon: IconButton(
-                          icon: Icon(_obscurePassword ? Icons.visibility_off : Icons.visibility),
+                          icon: Icon(
+                            _obscurePassword
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                          ),
                           onPressed: () {
                             HapticFeedback.lightImpact();
                             setState(() {
@@ -138,9 +142,9 @@ class _InputsScreenState extends State<InputsScreen> {
                       onPressed: () {
                         HapticFeedback.mediumImpact();
                         if (_formKey.currentState!.validate()) {
-                          ScaffoldMessenger.of(
-                            context,
-                          ).showSnackBar(const SnackBar(content: Text('验证通过！')));
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('验证通过！')),
+                          );
                         }
                       },
                       child: const Text('验证表单'),
@@ -185,11 +189,20 @@ class _InputsScreenState extends State<InputsScreen> {
                         );
                       },
                       suggestionsBuilder: (context, controller) {
-                        final suggestions = ['Flutter', 'Dart', 'Material', 'Widget', 'Animation']
-                            .where(
-                              (item) => item.toLowerCase().contains(controller.text.toLowerCase()),
-                            )
-                            .toList();
+                        final suggestions =
+                            [
+                                  'Flutter',
+                                  'Dart',
+                                  'Material',
+                                  'Widget',
+                                  'Animation',
+                                ]
+                                .where(
+                                  (item) => item.toLowerCase().contains(
+                                    controller.text.toLowerCase(),
+                                  ),
+                                )
+                                .toList();
                         return suggestions.map((suggestion) {
                           return ListTile(
                             title: Text(suggestion),
@@ -308,8 +321,14 @@ class _InputsScreenState extends State<InputsScreen> {
                     ),
                     const SizedBox(height: 16),
                     TextField(
-                      keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                      inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d*'))],
+                      keyboardType: const TextInputType.numberWithOptions(
+                        decimal: true,
+                      ),
+                      inputFormatters: [
+                        FilteringTextInputFormatter.allow(
+                          RegExp(r'^\d*\.?\d*'),
+                        ),
+                      ],
                       decoration: const InputDecoration(
                         labelText: '金额',
                         prefixIcon: Icon(Icons.attach_money),
@@ -336,7 +355,9 @@ class _InputsScreenState extends State<InputsScreen> {
           children: [
             Text(
               title,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+              style: Theme.of(
+                context,
+              ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
             child,

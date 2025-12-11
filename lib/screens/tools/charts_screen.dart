@@ -32,10 +32,16 @@ class _ChartsScreenState extends State<ChartsScreen> {
                     gridData: FlGridData(show: true),
                     titlesData: FlTitlesData(
                       leftTitles: AxisTitles(
-                        sideTitles: SideTitles(showTitles: true, reservedSize: 40),
+                        sideTitles: SideTitles(
+                          showTitles: true,
+                          reservedSize: 40,
+                        ),
                       ),
                       bottomTitles: AxisTitles(
-                        sideTitles: SideTitles(showTitles: true, reservedSize: 30),
+                        sideTitles: SideTitles(
+                          showTitles: true,
+                          reservedSize: 30,
+                        ),
                       ),
                       rightTitles: AxisTitles(
                         sideTitles: SideTitles(showTitles: false),
@@ -81,7 +87,10 @@ class _ChartsScreenState extends State<ChartsScreen> {
                     barTouchData: BarTouchData(enabled: true),
                     titlesData: FlTitlesData(
                       leftTitles: AxisTitles(
-                        sideTitles: SideTitles(showTitles: true, reservedSize: 40),
+                        sideTitles: SideTitles(
+                          showTitles: true,
+                          reservedSize: 40,
+                        ),
                       ),
                       bottomTitles: AxisTitles(
                         sideTitles: SideTitles(
@@ -101,13 +110,54 @@ class _ChartsScreenState extends State<ChartsScreen> {
                     ),
                     borderData: FlBorderData(show: true),
                     barGroups: [
-                      BarChartGroupData(x: 0, barRods: [BarChartRodData(toY: 8, color: colorScheme.primary)]),
-                      BarChartGroupData(x: 1, barRods: [BarChartRodData(toY: 10, color: colorScheme.secondary)]),
-                      BarChartGroupData(x: 2, barRods: [BarChartRodData(toY: 14, color: colorScheme.tertiary)]),
-                      BarChartGroupData(x: 3, barRods: [BarChartRodData(toY: 15, color: colorScheme.primary)]),
-                      BarChartGroupData(x: 4, barRods: [BarChartRodData(toY: 13, color: colorScheme.secondary)]),
-                      BarChartGroupData(x: 5, barRods: [BarChartRodData(toY: 12, color: colorScheme.tertiary)]),
-                      BarChartGroupData(x: 6, barRods: [BarChartRodData(toY: 16, color: colorScheme.primary)]),
+                      BarChartGroupData(
+                        x: 0,
+                        barRods: [
+                          BarChartRodData(toY: 8, color: colorScheme.primary),
+                        ],
+                      ),
+                      BarChartGroupData(
+                        x: 1,
+                        barRods: [
+                          BarChartRodData(
+                            toY: 10,
+                            color: colorScheme.secondary,
+                          ),
+                        ],
+                      ),
+                      BarChartGroupData(
+                        x: 2,
+                        barRods: [
+                          BarChartRodData(toY: 14, color: colorScheme.tertiary),
+                        ],
+                      ),
+                      BarChartGroupData(
+                        x: 3,
+                        barRods: [
+                          BarChartRodData(toY: 15, color: colorScheme.primary),
+                        ],
+                      ),
+                      BarChartGroupData(
+                        x: 4,
+                        barRods: [
+                          BarChartRodData(
+                            toY: 13,
+                            color: colorScheme.secondary,
+                          ),
+                        ],
+                      ),
+                      BarChartGroupData(
+                        x: 5,
+                        barRods: [
+                          BarChartRodData(toY: 12, color: colorScheme.tertiary),
+                        ],
+                      ),
+                      BarChartGroupData(
+                        x: 6,
+                        barRods: [
+                          BarChartRodData(toY: 16, color: colorScheme.primary),
+                        ],
+                      ),
                     ],
                   ),
                 ),
@@ -167,9 +217,9 @@ class _ChartsScreenState extends State<ChartsScreen> {
           children: [
             Text(
               title,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
             child,

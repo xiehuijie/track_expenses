@@ -15,7 +15,8 @@ class SystemScreen extends StatefulWidget {
   State<SystemScreen> createState() => _SystemScreenState();
 }
 
-class _SystemScreenState extends State<SystemScreen> with SingleTickerProviderStateMixin {
+class _SystemScreenState extends State<SystemScreen>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -49,7 +50,12 @@ class _SystemScreenState extends State<SystemScreen> with SingleTickerProviderSt
       ),
       body: TabBarView(
         controller: _tabController,
-        children: const [_FilePickerTab(), _ShareTab(), _UrlLauncherTab(), _ClipboardTab()],
+        children: const [
+          _FilePickerTab(),
+          _ShareTab(),
+          _UrlLauncherTab(),
+          _ClipboardTab(),
+        ],
       ),
     );
   }
@@ -73,7 +79,9 @@ class _FilePickerTabState extends State<_FilePickerTab> {
     setState(() => _isLoading = true);
 
     try {
-      final result = await FilePicker.platform.pickFiles(allowMultiple: allowMultiple);
+      final result = await FilePicker.platform.pickFiles(
+        allowMultiple: allowMultiple,
+      );
 
       if (result != null) {
         setState(() => _selectedFiles = result.files);
@@ -90,7 +98,10 @@ class _FilePickerTabState extends State<_FilePickerTab> {
     setState(() => _isLoading = true);
 
     try {
-      final result = await FilePicker.platform.pickFiles(type: FileType.image, allowMultiple: true);
+      final result = await FilePicker.platform.pickFiles(
+        type: FileType.image,
+        allowMultiple: true,
+      );
 
       if (result != null) {
         setState(() => _selectedFiles = result.files);
@@ -145,9 +156,9 @@ class _FilePickerTabState extends State<_FilePickerTab> {
 
   void _showError(String message) {
     if (mounted) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(message), backgroundColor: Colors.red));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(message), backgroundColor: Colors.red),
+      );
     }
   }
 
@@ -172,9 +183,9 @@ class _FilePickerTabState extends State<_FilePickerTab> {
                 children: [
                   Text(
                     '文件选择器',
-                    style: Theme.of(
-                      context,
-                    ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 16),
                   Wrap(
@@ -187,7 +198,9 @@ class _FilePickerTabState extends State<_FilePickerTab> {
                         label: const Text('单个文件'),
                       ),
                       ElevatedButton.icon(
-                        onPressed: _isLoading ? null : () => _pickFile(allowMultiple: true),
+                        onPressed: _isLoading
+                            ? null
+                            : () => _pickFile(allowMultiple: true),
                         icon: const Icon(Icons.file_copy),
                         label: const Text('多个文件'),
                       ),
@@ -229,11 +242,13 @@ class _FilePickerTabState extends State<_FilePickerTab> {
                       children: [
                         Text(
                           '选择结果',
-                          style: Theme.of(
-                            context,
-                          ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                          style: Theme.of(context).textTheme.titleMedium
+                              ?.copyWith(fontWeight: FontWeight.bold),
                         ),
-                        IconButton(icon: const Icon(Icons.clear), onPressed: _clearSelection),
+                        IconButton(
+                          icon: const Icon(Icons.clear),
+                          onPressed: _clearSelection,
+                        ),
                       ],
                     ),
                     const Divider(),
@@ -321,7 +336,9 @@ class _ShareTabState extends State<_ShareTab> {
       await Share.share(_textController.text, subject: 'Flutter 分享测试');
 
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('分享完成')));
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(const SnackBar(content: Text('分享完成')));
       }
     } catch (e) {
       _showError('分享失败: $e');
@@ -342,7 +359,11 @@ class _ShareTabState extends State<_ShareTab> {
       final file = File('${directory.path}/share_demo.txt');
       await file.writeAsString('这是一个用于分享测试的文件内容。\n创建时间: ${DateTime.now()}');
 
-      await Share.shareXFiles([XFile(file.path)], text: '分享文件', subject: 'Flutter 文件分享测试');
+      await Share.shareXFiles(
+        [XFile(file.path)],
+        text: '分享文件',
+        subject: 'Flutter 文件分享测试',
+      );
     } catch (e) {
       _showError('分享文件失败: $e');
     }
@@ -360,9 +381,9 @@ class _ShareTabState extends State<_ShareTab> {
 
   void _showError(String message) {
     if (mounted) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(message), backgroundColor: Colors.red));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(message), backgroundColor: Colors.red),
+      );
     }
   }
 
@@ -381,14 +402,17 @@ class _ShareTabState extends State<_ShareTab> {
                 children: [
                   Text(
                     '分享文本',
-                    style: Theme.of(
-                      context,
-                    ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 16),
                   TextField(
                     controller: _textController,
-                    decoration: const InputDecoration(labelText: '要分享的内容', hintText: '输入要分享的文本'),
+                    decoration: const InputDecoration(
+                      labelText: '要分享的内容',
+                      hintText: '输入要分享的文本',
+                    ),
                     maxLines: 3,
                   ),
                   const SizedBox(height: 16),
@@ -421,9 +445,9 @@ class _ShareTabState extends State<_ShareTab> {
                 children: [
                   Text(
                     '分享其他内容',
-                    style: Theme.of(
-                      context,
-                    ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 16),
                   ListTile(
@@ -469,14 +493,16 @@ class _UrlLauncherTab extends StatelessWidget {
         await launchUrl(uri, mode: mode);
       } else {
         if (context.mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('无法打开: $url')));
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text('无法打开: $url')));
         }
       }
     } catch (e) {
       if (context.mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text('打开链接失败: $e'), backgroundColor: Colors.red));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('打开链接失败: $e'), backgroundColor: Colors.red),
+        );
       }
     }
   }
@@ -496,9 +522,9 @@ class _UrlLauncherTab extends StatelessWidget {
                 children: [
                   Text(
                     '网页链接',
-                    style: Theme.of(
-                      context,
-                    ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 16),
                   ListTile(
@@ -521,8 +547,11 @@ class _UrlLauncherTab extends StatelessWidget {
                     leading: const Icon(Icons.web),
                     title: const Text('在应用内打开'),
                     subtitle: const Text('使用内置 WebView'),
-                    onTap: () =>
-                        _launchUrl(context, 'https://flutter.dev', mode: LaunchMode.inAppWebView),
+                    onTap: () => _launchUrl(
+                      context,
+                      'https://flutter.dev',
+                      mode: LaunchMode.inAppWebView,
+                    ),
                   ),
                 ],
               ),
@@ -537,9 +566,9 @@ class _UrlLauncherTab extends StatelessWidget {
                 children: [
                   Text(
                     '系统应用',
-                    style: Theme.of(
-                      context,
-                    ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 16),
                   ListTile(
@@ -561,7 +590,10 @@ class _UrlLauncherTab extends StatelessWidget {
                     leading: const Icon(Icons.sms),
                     title: const Text('发送短信'),
                     subtitle: const Text('打开短信应用'),
-                    onTap: () => _launchUrl(context, 'sms:+1234567890?body=Hello from Flutter'),
+                    onTap: () => _launchUrl(
+                      context,
+                      'sms:+1234567890?body=Hello from Flutter',
+                    ),
                   ),
                   ListTile(
                     leading: const Icon(Icons.map),
@@ -585,9 +617,9 @@ class _UrlLauncherTab extends StatelessWidget {
                 children: [
                   Text(
                     '应用商店',
-                    style: Theme.of(
-                      context,
-                    ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 16),
                   ListTile(
@@ -603,8 +635,10 @@ class _UrlLauncherTab extends StatelessWidget {
                     leading: const Icon(Icons.apple),
                     title: const Text('App Store'),
                     subtitle: const Text('打开应用商店'),
-                    onTap: () =>
-                        _launchUrl(context, 'https://apps.apple.com/app/apple-store/id585027354'),
+                    onTap: () => _launchUrl(
+                      context,
+                      'https://apps.apple.com/app/apple-store/id585027354',
+                    ),
                   ),
                 ],
               ),
@@ -645,7 +679,9 @@ class _ClipboardTabState extends State<_ClipboardTab> {
     try {
       await Clipboard.setData(ClipboardData(text: _textController.text));
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('已复制到剪贴板')));
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(const SnackBar(content: Text('已复制到剪贴板')));
       }
     } catch (e) {
       _showError('复制失败: $e');
@@ -669,9 +705,9 @@ class _ClipboardTabState extends State<_ClipboardTab> {
 
   void _showError(String message) {
     if (mounted) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(message), backgroundColor: Colors.red));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(message), backgroundColor: Colors.red),
+      );
     }
   }
 
@@ -690,14 +726,17 @@ class _ClipboardTabState extends State<_ClipboardTab> {
                 children: [
                   Text(
                     '复制到剪贴板',
-                    style: Theme.of(
-                      context,
-                    ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 16),
                   TextField(
                     controller: _textController,
-                    decoration: const InputDecoration(labelText: '输入文本', hintText: '输入要复制的内容'),
+                    decoration: const InputDecoration(
+                      labelText: '输入文本',
+                      hintText: '输入要复制的内容',
+                    ),
                     maxLines: 3,
                   ),
                   const SizedBox(height: 16),
@@ -719,9 +758,9 @@ class _ClipboardTabState extends State<_ClipboardTab> {
                 children: [
                   Text(
                     '从剪贴板粘贴',
-                    style: Theme.of(
-                      context,
-                    ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 16),
                   OutlinedButton.icon(
@@ -754,12 +793,15 @@ class _ClipboardTabState extends State<_ClipboardTab> {
                 children: [
                   Text(
                     '触觉反馈',
-                    style: Theme.of(
-                      context,
-                    ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 16),
-                  const Text('点击按钮体验不同的触觉反馈（需要在实体设备上体验）', style: TextStyle(color: Colors.grey)),
+                  const Text(
+                    '点击按钮体验不同的触觉反馈（需要在实体设备上体验）',
+                    style: TextStyle(color: Colors.grey),
+                  ),
                   const SizedBox(height: 16),
                   Wrap(
                     spacing: 8,

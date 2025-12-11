@@ -10,7 +10,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:track_expenses/app/app.dart';
 
 void main() {
-  testWidgets('App launches and shows home screen', (WidgetTester tester) async {
+  testWidgets('App launches and shows home screen', (
+    WidgetTester tester,
+  ) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(const MaterialShowcaseApp());
     await tester.pumpAndSettle();
@@ -25,7 +27,9 @@ void main() {
     expect(find.byType(AppBar), findsOneWidget);
   });
 
-  testWidgets('Navigation bar has multiple destinations', (WidgetTester tester) async {
+  testWidgets('Navigation bar has multiple destinations', (
+    WidgetTester tester,
+  ) async {
     await tester.pumpWidget(const MaterialShowcaseApp());
     await tester.pumpAndSettle();
 
@@ -46,7 +50,11 @@ void main() {
     final lightModeButton = find.byIcon(Icons.light_mode);
 
     // One of them should be present
-    expect(darkModeButton.evaluate().isNotEmpty || lightModeButton.evaluate().isNotEmpty, isTrue);
+    expect(
+      darkModeButton.evaluate().isNotEmpty ||
+          lightModeButton.evaluate().isNotEmpty,
+      isTrue,
+    );
   });
 
   testWidgets('Scaffold structure is correct', (WidgetTester tester) async {

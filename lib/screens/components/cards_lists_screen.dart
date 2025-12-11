@@ -27,7 +27,10 @@ class CardsListsScreen extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('基础卡片', style: Theme.of(context).textTheme.titleMedium),
+                          Text(
+                            '基础卡片',
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
                           const SizedBox(height: 8),
                           const Text('这是一个基础卡片，包含一些文本内容。'),
                         ],
@@ -37,7 +40,9 @@ class CardsListsScreen extends StatelessWidget {
                   const SizedBox(height: 16),
                   Card(
                     elevation: 8,
-                    shadowColor: Theme.of(context).colorScheme.primary.withOpacity(0.3),
+                    shadowColor: Theme.of(
+                      context,
+                    ).colorScheme.primary.withOpacity(0.3),
                     child: Column(
                       children: [
                         Container(
@@ -49,10 +54,16 @@ class CardsListsScreen extends StatelessWidget {
                                 Theme.of(context).colorScheme.secondary,
                               ],
                             ),
-                            borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
+                            borderRadius: const BorderRadius.vertical(
+                              top: Radius.circular(12),
+                            ),
                           ),
                           child: const Center(
-                            child: Icon(Icons.image, size: 48, color: Colors.white),
+                            child: Icon(
+                              Icons.image,
+                              size: 48,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                         Padding(
@@ -60,7 +71,10 @@ class CardsListsScreen extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('带图片的卡片', style: Theme.of(context).textTheme.titleMedium),
+                              Text(
+                                '带图片的卡片',
+                                style: Theme.of(context).textTheme.titleMedium,
+                              ),
                               const SizedBox(height: 8),
                               const Text('这个卡片包含一个头部图片区域。'),
                               const SizedBox(height: 16),
@@ -68,12 +82,14 @@ class CardsListsScreen extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   TextButton(
-                                    onPressed: () => HapticFeedback.lightImpact(),
+                                    onPressed: () =>
+                                        HapticFeedback.lightImpact(),
                                     child: const Text('取消'),
                                   ),
                                   const SizedBox(width: 8),
                                   FilledButton(
-                                    onPressed: () => HapticFeedback.mediumImpact(),
+                                    onPressed: () =>
+                                        HapticFeedback.mediumImpact(),
                                     child: const Text('确认'),
                                   ),
                                 ],
@@ -105,7 +121,10 @@ class CardsListsScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text('可点击卡片'),
-                                  Text('点击查看效果', style: TextStyle(color: Colors.grey)),
+                                  Text(
+                                    '点击查看效果',
+                                    style: TextStyle(color: Colors.grey),
+                                  ),
                                 ],
                               ),
                             ),
@@ -211,8 +230,10 @@ class CardsListsScreen extends StatelessWidget {
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
                               colors: [
-                                Colors.primaries[index % Colors.primaries.length],
-                                Colors.primaries[(index + 3) % Colors.primaries.length],
+                                Colors.primaries[index %
+                                    Colors.primaries.length],
+                                Colors.primaries[(index + 3) %
+                                    Colors.primaries.length],
                               ],
                             ),
                           ),
@@ -301,7 +322,9 @@ class CardsListsScreen extends StatelessWidget {
           children: [
             Text(
               title,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+              style: Theme.of(
+                context,
+              ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
             child,
@@ -313,12 +336,18 @@ class CardsListsScreen extends StatelessWidget {
 
   void _showReorderableList(BuildContext context) {
     HapticFeedback.lightImpact();
-    Navigator.push(context, MaterialPageRoute(builder: (context) => const _ReorderableListPage()));
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const _ReorderableListPage()),
+    );
   }
 
   void _showDismissibleList(BuildContext context) {
     HapticFeedback.lightImpact();
-    Navigator.push(context, MaterialPageRoute(builder: (context) => const _DismissibleListPage()));
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const _DismissibleListPage()),
+    );
   }
 }
 
@@ -408,7 +437,9 @@ class _DismissibleListPageState extends State<_DismissibleListPage> {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(
-                    direction == DismissDirection.startToEnd ? '$item 已归档' : '$item 已删除',
+                    direction == DismissDirection.startToEnd
+                        ? '$item 已归档'
+                        : '$item 已删除',
                   ),
                   action: SnackBarAction(
                     label: '撤销',

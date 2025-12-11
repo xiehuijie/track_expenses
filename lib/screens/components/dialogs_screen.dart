@@ -106,7 +106,10 @@ class DialogsScreen extends StatelessWidget {
                 spacing: 16,
                 runSpacing: 16,
                 children: [
-                  const Tooltip(message: '这是一个基础工具提示', child: Icon(Icons.info_outline)),
+                  const Tooltip(
+                    message: '这是一个基础工具提示',
+                    child: Icon(Icons.info_outline),
+                  ),
                   Tooltip(
                     richMessage: TextSpan(
                       children: [
@@ -127,7 +130,10 @@ class DialogsScreen extends StatelessWidget {
                     message: '长按或悬停查看',
                     waitDuration: const Duration(milliseconds: 500),
                     showDuration: const Duration(seconds: 2),
-                    child: ElevatedButton(onPressed: () {}, child: const Text('带 Tooltip')),
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      child: const Text('带 Tooltip'),
+                    ),
                   ),
                 ],
               ),
@@ -149,22 +155,34 @@ class DialogsScreen extends StatelessWidget {
                     itemBuilder: (context) => [
                       const PopupMenuItem(
                         value: '编辑',
-                        child: ListTile(leading: Icon(Icons.edit), title: Text('编辑')),
+                        child: ListTile(
+                          leading: Icon(Icons.edit),
+                          title: Text('编辑'),
+                        ),
                       ),
                       const PopupMenuItem(
                         value: '分享',
-                        child: ListTile(leading: Icon(Icons.share), title: Text('分享')),
+                        child: ListTile(
+                          leading: Icon(Icons.share),
+                          title: Text('分享'),
+                        ),
                       ),
                       const PopupMenuDivider(),
                       const PopupMenuItem(
                         value: '删除',
                         child: ListTile(
                           leading: Icon(Icons.delete, color: Colors.red),
-                          title: Text('删除', style: TextStyle(color: Colors.red)),
+                          title: Text(
+                            '删除',
+                            style: TextStyle(color: Colors.red),
+                          ),
                         ),
                       ),
                     ],
-                    child: const ListTile(title: Text('点击显示菜单'), trailing: Icon(Icons.more_vert)),
+                    child: const ListTile(
+                      title: Text('点击显示菜单'),
+                      trailing: Icon(Icons.more_vert),
+                    ),
                   ),
                 ],
               ),
@@ -195,7 +213,9 @@ class DialogsScreen extends StatelessWidget {
           children: [
             Text(
               title,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+              style: Theme.of(
+                context,
+              ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
             child,
@@ -245,7 +265,9 @@ class DialogsScreen extends StatelessWidget {
             onPressed: () {
               HapticFeedback.heavyImpact();
               Navigator.pop(context);
-              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('已删除')));
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(const SnackBar(content: Text('已删除')));
             },
             style: FilledButton.styleFrom(backgroundColor: Colors.red),
             child: const Text('删除'),
@@ -269,19 +291,25 @@ class DialogsScreen extends StatelessWidget {
               CircleAvatar(
                 radius: 40,
                 backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-                child: Icon(Icons.check, size: 40, color: Theme.of(context).colorScheme.primary),
+                child: Icon(
+                  Icons.check,
+                  size: 40,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
               ),
               const SizedBox(height: 16),
               Text(
                 '操作成功！',
-                style: Theme.of(
-                  context,
-                ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
+                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               const SizedBox(height: 8),
               Text(
                 '您的操作已成功完成',
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.grey),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyMedium?.copyWith(color: Colors.grey),
               ),
               const SizedBox(height: 24),
               SizedBox(
@@ -313,27 +341,38 @@ class DialogsScreen extends StatelessWidget {
               HapticFeedback.selectionClick();
               Navigator.pop(context, '选项 1');
             },
-            child: const ListTile(leading: Icon(Icons.looks_one), title: Text('选项 1')),
+            child: const ListTile(
+              leading: Icon(Icons.looks_one),
+              title: Text('选项 1'),
+            ),
           ),
           SimpleDialogOption(
             onPressed: () {
               HapticFeedback.selectionClick();
               Navigator.pop(context, '选项 2');
             },
-            child: const ListTile(leading: Icon(Icons.looks_two), title: Text('选项 2')),
+            child: const ListTile(
+              leading: Icon(Icons.looks_two),
+              title: Text('选项 2'),
+            ),
           ),
           SimpleDialogOption(
             onPressed: () {
               HapticFeedback.selectionClick();
               Navigator.pop(context, '选项 3');
             },
-            child: const ListTile(leading: Icon(Icons.looks_3), title: Text('选项 3')),
+            child: const ListTile(
+              leading: Icon(Icons.looks_3),
+              title: Text('选项 3'),
+            ),
           ),
         ],
       ),
     );
     if (result != null && context.mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('您选择了: $result')));
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('您选择了: $result')));
     }
   }
 
@@ -353,12 +392,17 @@ class DialogsScreen extends StatelessWidget {
               width: 40,
               height: 4,
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.onSurfaceVariant.withOpacity(0.4),
+                color: Theme.of(
+                  context,
+                ).colorScheme.onSurfaceVariant.withOpacity(0.4),
                 borderRadius: BorderRadius.circular(2),
               ),
             ),
             const SizedBox(height: 24),
-            const Text('模态底部弹出', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            const Text(
+              '模态底部弹出',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
             const SizedBox(height: 16),
             ListTile(
               leading: const Icon(Icons.share),
@@ -413,7 +457,9 @@ class DialogsScreen extends StatelessWidget {
                 width: 40,
                 height: 4,
                 decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.onSurfaceVariant.withOpacity(0.4),
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.onSurfaceVariant.withOpacity(0.4),
                   borderRadius: BorderRadius.circular(2),
                 ),
               ),
@@ -441,9 +487,9 @@ class DialogsScreen extends StatelessWidget {
 
   void _showBasicSnackBar(BuildContext context) {
     HapticFeedback.lightImpact();
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(const SnackBar(content: Text('这是一个基础提示'), duration: Duration(seconds: 2)));
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('这是一个基础提示'), duration: Duration(seconds: 2)),
+    );
   }
 
   void _showActionSnackBar(BuildContext context) {
@@ -534,13 +580,19 @@ class _ExpansionPanelDemoState extends State<_ExpansionPanelDemo> {
         ExpansionPanel(
           headerBuilder: (context, isExpanded) =>
               const ListTile(title: Text('面板 2'), subtitle: Text('点击展开查看详情')),
-          body: const Padding(padding: EdgeInsets.all(16), child: Text('这是面板 2 的内容。支持动画过渡效果。')),
+          body: const Padding(
+            padding: EdgeInsets.all(16),
+            child: Text('这是面板 2 的内容。支持动画过渡效果。'),
+          ),
           isExpanded: _isExpanded[1],
         ),
         ExpansionPanel(
           headerBuilder: (context, isExpanded) =>
               const ListTile(title: Text('面板 3'), subtitle: Text('点击展开查看详情')),
-          body: const Padding(padding: EdgeInsets.all(16), child: Text('这是面板 3 的内容。')),
+          body: const Padding(
+            padding: EdgeInsets.all(16),
+            child: Text('这是面板 3 的内容。'),
+          ),
           isExpanded: _isExpanded[2],
           canTapOnHeader: true,
         ),

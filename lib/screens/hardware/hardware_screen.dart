@@ -18,7 +18,8 @@ class HardwareScreen extends StatefulWidget {
   State<HardwareScreen> createState() => _HardwareScreenState();
 }
 
-class _HardwareScreenState extends State<HardwareScreen> with SingleTickerProviderStateMixin {
+class _HardwareScreenState extends State<HardwareScreen>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -52,7 +53,12 @@ class _HardwareScreenState extends State<HardwareScreen> with SingleTickerProvid
       ),
       body: TabBarView(
         controller: _tabController,
-        children: const [_CameraTab(), _BiometricTab(), _SensorsTab(), _DeviceInfoTab()],
+        children: const [
+          _CameraTab(),
+          _BiometricTab(),
+          _SensorsTab(),
+          _DeviceInfoTab(),
+        ],
       ),
     );
   }
@@ -106,7 +112,10 @@ class _CameraTabState extends State<_CameraTab> {
         return;
       }
 
-      _cameraController = CameraController(_cameras!.first, ResolutionPreset.medium);
+      _cameraController = CameraController(
+        _cameras!.first,
+        ResolutionPreset.medium,
+      );
 
       await _cameraController!.initialize();
 
@@ -132,7 +141,9 @@ class _CameraTabState extends State<_CameraTab> {
       setState(() => _capturedImage = image);
 
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('照片已保存: ${image.path}')));
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('照片已保存: ${image.path}')));
       }
     } catch (e) {
       _showError('拍照失败: $e');
@@ -163,9 +174,9 @@ class _CameraTabState extends State<_CameraTab> {
 
   void _showError(String message) {
     if (mounted) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(message), backgroundColor: Colors.red));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(message), backgroundColor: Colors.red),
+      );
     }
   }
 
@@ -184,9 +195,9 @@ class _CameraTabState extends State<_CameraTab> {
                 children: [
                   Text(
                     '相机预览',
-                    style: Theme.of(
-                      context,
-                    ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 16),
                   if (_errorMessage != null)
@@ -246,11 +257,19 @@ class _CameraTabState extends State<_CameraTab> {
                         Container(
                           height: 200,
                           decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.surfaceContainerHighest,
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: Center(
-                            child: Icon(Icons.camera_alt, size: 64, color: Theme.of(context).colorScheme.onSurfaceVariant),
+                            child: Icon(
+                              Icons.camera_alt,
+                              size: 64,
+                              color: Theme.of(
+                                context,
+                              ).colorScheme.onSurfaceVariant,
+                            ),
                           ),
                         ),
                         const SizedBox(height: 16),
@@ -274,9 +293,9 @@ class _CameraTabState extends State<_CameraTab> {
                 children: [
                   Text(
                     '图片选择器',
-                    style: Theme.of(
-                      context,
-                    ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 16),
                   Row(
@@ -309,7 +328,10 @@ class _CameraTabState extends State<_CameraTab> {
                     const SizedBox(height: 8),
                     Text(
                       '路径: ${_capturedImage!.path}',
-                      style: TextStyle(fontSize: 12, color: Theme.of(context).colorScheme.onSurfaceVariant),
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      ),
                     ),
                   ],
                 ],
@@ -367,7 +389,10 @@ class _BiometricTabState extends State<_BiometricTab> {
     try {
       final authenticated = await _localAuth.authenticate(
         localizedReason: '请验证身份以继续',
-        options: const AuthenticationOptions(stickyAuth: true, biometricOnly: false),
+        options: const AuthenticationOptions(
+          stickyAuth: true,
+          biometricOnly: false,
+        ),
       );
 
       HapticFeedback.heavyImpact();
@@ -424,18 +449,24 @@ class _BiometricTabState extends State<_BiometricTab> {
                 children: [
                   Text(
                     '设备支持状态',
-                    style: Theme.of(
-                      context,
-                    ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 16),
                   _buildStatusRow('设备支持生物识别', _isDeviceSupported),
                   _buildStatusRow('可检查生物识别', _canCheckBiometrics),
                   const Divider(),
-                  Text('可用的生物识别方式:', style: Theme.of(context).textTheme.bodyMedium),
+                  Text(
+                    '可用的生物识别方式:',
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
                   const SizedBox(height: 8),
                   if (_availableBiometrics.isEmpty)
-                    const Text('无可用的生物识别方式', style: TextStyle(color: Colors.grey))
+                    const Text(
+                      '无可用的生物识别方式',
+                      style: TextStyle(color: Colors.grey),
+                    )
                   else
                     Wrap(
                       spacing: 8,
@@ -460,9 +491,9 @@ class _BiometricTabState extends State<_BiometricTab> {
                 children: [
                   Text(
                     '身份验证',
-                    style: Theme.of(
-                      context,
-                    ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 16),
                   Center(
@@ -482,7 +513,10 @@ class _BiometricTabState extends State<_BiometricTab> {
                               : Theme.of(context).colorScheme.primary,
                         ),
                         const SizedBox(height: 16),
-                        Text(_authStatus, style: Theme.of(context).textTheme.titleMedium),
+                        Text(
+                          _authStatus,
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
                         const SizedBox(height: 24),
                         FilledButton.icon(
                           onPressed: (_canCheckBiometrics && !_isAuthenticating)
@@ -607,7 +641,9 @@ class _SensorsTabState extends State<_SensorsTab> {
                   const SizedBox(height: 8),
                   Text(
                     _isListening ? '传感器监听中...' : '点击开始监听传感器数据',
-                    style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant),
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    ),
                   ),
                 ],
               ),
@@ -675,9 +711,9 @@ class _SensorsTabState extends State<_SensorsTab> {
                 const SizedBox(width: 8),
                 Text(
                   title,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
             ),
@@ -692,12 +728,19 @@ class _SensorsTabState extends State<_SensorsTab> {
                     children: [
                       Text(
                         entry.key,
-                        style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.grey),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                        ),
                       ),
                       const SizedBox(height: 4),
                       Text(
                         entry.value,
-                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: color),
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: color,
+                        ),
                       ),
                     ],
                   );
@@ -786,7 +829,9 @@ class _DeviceInfoTabState extends State<_DeviceInfoTab> {
           '型号': macInfo.model,
           '系统版本': macInfo.osRelease,
           '核心数': macInfo.activeCPUs.toString(),
-          '内存 (GB)': (macInfo.memorySize / 1024 / 1024 / 1024).toStringAsFixed(2),
+          '内存 (GB)': (macInfo.memorySize / 1024 / 1024 / 1024).toStringAsFixed(
+            2,
+          ),
         };
       } else if (Platform.isLinux) {
         final linuxInfo = await _deviceInfo.linuxInfo;
@@ -826,19 +871,24 @@ class _DeviceInfoTabState extends State<_DeviceInfoTab> {
                       const SizedBox(width: 8),
                       Text(
                         '设备信息',
-                        style: Theme.of(
-                          context,
-                        ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                        style: Theme.of(context).textTheme.titleMedium
+                            ?.copyWith(fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
-                  IconButton(icon: const Icon(Icons.refresh), onPressed: _loadDeviceInfo),
+                  IconButton(
+                    icon: const Icon(Icons.refresh),
+                    onPressed: _loadDeviceInfo,
+                  ),
                 ],
               ),
               const Divider(),
               if (_isLoading)
                 const Center(
-                  child: Padding(padding: EdgeInsets.all(32), child: CircularProgressIndicator()),
+                  child: Padding(
+                    padding: EdgeInsets.all(32),
+                    child: CircularProgressIndicator(),
+                  ),
                 )
               else
                 ...(_deviceData.entries.map((entry) {
@@ -851,7 +901,10 @@ class _DeviceInfoTabState extends State<_DeviceInfoTab> {
                           width: 120,
                           child: Text(
                             entry.key,
-                            style: const TextStyle(fontWeight: FontWeight.w500, color: Colors.grey),
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w500,
+                              color: Colors.grey,
+                            ),
                           ),
                         ),
                         Expanded(

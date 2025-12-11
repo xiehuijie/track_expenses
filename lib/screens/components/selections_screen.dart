@@ -232,7 +232,9 @@ class _SelectionsScreenState extends State<SelectionsScreen> {
                     },
                   ),
                   const SizedBox(height: 16),
-                  Text('范围滑块: ${_rangeValues.start.round()} - ${_rangeValues.end.round()}'),
+                  Text(
+                    '范围滑块: ${_rangeValues.start.round()} - ${_rangeValues.end.round()}',
+                  ),
                   RangeSlider(
                     values: _rangeValues,
                     min: 0,
@@ -257,7 +259,9 @@ class _SelectionsScreenState extends State<SelectionsScreen> {
                       inactiveTrackColor: Colors.green.withOpacity(0.3),
                       thumbColor: Colors.green,
                       overlayColor: Colors.green.withOpacity(0.2),
-                      thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 12),
+                      thumbShape: const RoundSliderThumbShape(
+                        enabledThumbRadius: 12,
+                      ),
                       trackHeight: 8,
                     ),
                     child: Slider(
@@ -294,9 +298,9 @@ class _SelectionsScreenState extends State<SelectionsScreen> {
                         deleteIcon: const Icon(Icons.close, size: 18),
                         onDeleted: () {
                           _triggerHaptic();
-                          ScaffoldMessenger.of(
-                            context,
-                          ).showSnackBar(const SnackBar(content: Text('Chip 已删除')));
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Chip 已删除')),
+                          );
                         },
                       ),
                     ],
@@ -330,7 +334,9 @@ class _SelectionsScreenState extends State<SelectionsScreen> {
                   Wrap(
                     spacing: 8,
                     runSpacing: 8,
-                    children: ['Flutter', 'Dart', 'Android', 'iOS', 'Web'].map((label) {
+                    children: ['Flutter', 'Dart', 'Android', 'iOS', 'Web'].map((
+                      label,
+                    ) {
                       final isSelected = _selectedChips.contains(label);
                       return FilterChip(
                         label: Text(label),
@@ -376,7 +382,9 @@ class _SelectionsScreenState extends State<SelectionsScreen> {
                     children: [
                       InputChip(
                         avatar: const CircleAvatar(
-                          backgroundImage: NetworkImage('https://via.placeholder.com/150'),
+                          backgroundImage: NetworkImage(
+                            'https://via.placeholder.com/150',
+                          ),
                         ),
                         label: const Text('John Doe'),
                         onDeleted: () {
@@ -414,7 +422,9 @@ class _SelectionsScreenState extends State<SelectionsScreen> {
           children: [
             Text(
               title,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+              style: Theme.of(
+                context,
+              ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
             child,
