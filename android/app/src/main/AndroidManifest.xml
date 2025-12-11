@@ -29,7 +29,7 @@
     <!-- 传感器权限（加速度计、陀螺仪等默认可用，无需声明） -->
 
     <application
-        android:label="track_expenses"
+        android:label="Material Showcase"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

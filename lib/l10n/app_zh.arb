@@ -1,0 +1,55 @@
+{
+  "@@locale": "zh",
+  "appTitle": "Material Design 展示",
+  "themeSettings": "主题设置",
+  "themeMode": "主题模式",
+  "themeColor": "主题颜色",
+  "followSystem": "跟随系统",
+  "lightMode": "浅色",
+  "darkMode": "深色",
+  "toggleTheme": "切换主题",
+  
+  "categoryMaterial": "Material 组件",
+  "categoryAnimations": "动画与布局",
+  "categoryStorage": "数据存储",
+  "categoryHardware": "硬件调用",
+  "categorySystem": "系统调用",
+  
+  "buttons": "按钮",
+  "buttonsDesc": "ElevatedButton, FilledButton, TextButton 等",
+  "inputs": "输入框",
+  "inputsDesc": "TextField, TextFormField, 搜索栏",
+  "selections": "选择控件",
+  "selectionsDesc": "Switch, Checkbox, Radio, Slider, Chips",
+  "dialogs": "对话框与提示",
+  "dialogsDesc": "Dialog, BottomSheet, Snackbar, Toast",
+  "navigation": "导航组件",
+  "navigationDesc": "AppBar, Drawer, TabBar, BottomNav",
+  "cardsLists": "卡片与列表",
+  "cardsListsDesc": "Card, ListTile, ExpansionTile, GridView",
+  
+  "animations": "动画效果",
+  "animationsDesc": "页面切换、Hero、隐式/显式动画",
+  
+  "storage": "存储能力",
+  "storageDesc": "SharedPreferences, SQLite, 文件操作",
+  
+  "hardware": "硬件功能",
+  "hardwareDesc": "摄像头、生物识别、传感器",
+  
+  "system": "系统功能",
+  "systemDesc": "文件选择、分享、URL启动",
+  
+  "colorPurple": "紫色",
+  "colorBlue": "蓝色",
+  "colorTeal": "青色",
+  "colorGreen": "绿色",
+  "colorOrange": "橙色",
+  "colorRed": "红色",
+  "colorPink": "粉色",
+  "colorIndigo": "靛蓝",
+  
+  "language": "语言",
+  "chinese": "中文",
+  "english": "英语"
+}

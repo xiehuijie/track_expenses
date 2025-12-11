@@ -2,6 +2,11 @@
 
 一个全面展示 Flutter Material Design 组件和系统能力的示例应用程序。
 
+[![Flutter](https://img.shields.io/badge/Flutter-3.9.2+-blue.svg)](https://flutter.dev)
+[![Dart](https://img.shields.io/badge/Dart-3.9.2+-blue.svg)](https://dart.dev)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Platform](https://img.shields.io/badge/Platform-Android%20%7C%20iOS%20%7C%20Web%20%7C%20Windows%20%7C%20macOS%20%7C%20Linux-lightgrey.svg)](https://flutter.dev/multi-platform)
+
 ## 📱 功能特性
 
 ### Material Design 组件
@@ -12,12 +17,20 @@
 - **导航组件**: AppBar, SliverAppBar, TabBar, BottomNavigationBar, NavigationBar, NavigationRail, Drawer, Stepper
 - **列表与卡片**: Card, ListTile, ExpansionTile, GridView, ReorderableListView, Dismissible, DataTable
 
+### 🎨 主题与国际化
+- **6种主题色**: 深蓝(默认)、蓝绿色、紫色、橙色、绿色、粉色
+- **深色模式**: 完整的深色主题支持
+- **多语言**: 中文、English 双语支持
+- **Material 3**: 完整的 Material Design 3 设计规范
+
 ### 动画效果
 - **隐式动画**: AnimatedContainer, AnimatedOpacity, AnimatedCrossFade, AnimatedRotation, AnimatedScale
 - **显式动画**: AnimationController, RotationTransition, SlideTransition, FadeTransition
-- **页面切换**: SharedAxisTransition, FadeThrough, OpenContainer
+- **页面切换**: SharedAxisTransition, FadeThrough, OpenContainer (Material Motion)
 - **Hero 动画**: 跨页面共享元素动画
 - **AnimatedList**: 列表项添加/删除动画
+- **加载动画**: 脉冲、旋转、波浪、骨架屏加载效果
+- **粒子效果**: 烟花/礼花庆祝动画 (confetti)
 
 ### 数据存储
 - **SharedPreferences**: 键值对持久化存储
@@ -36,6 +49,28 @@
 - **URL 启动**: 打开网页、邮件、电话、短信、地图
 - **剪贴板**: 复制、粘贴操作
 - **触觉反馈**: 轻触、中度、重度、选择、振动
+
+### 📊 实用工具组件
+- **图表组件**: 折线图、柱状图、饼图、雷达图 (fl_chart)
+- **日历组件**: 月视图、周视图、事件标记 (table_calendar)
+- **粒子动画**: 自定义粒子效果动画
+- **热力图**: GitHub 贡献图风格热力图
+- **进度指示器**: 线性、圆形、百分比、步骤进度
+
+### 💼 业务组件
+- **支付组件**: 支付方式选择、订单信息展示
+- **金额输入**: 带格式化的金额输入键盘
+- **二维码扫描**: 实时 QR 码扫描与识别 (mobile_scanner)
+- **验证码输入**: OTP 验证码输入组件
+
+### 🔔 通知推送
+- **本地通知**: 即时通知发送 (flutter_local_notifications)
+- **定时通知**: 计划任务通知、时区支持
+- **通知渠道**: Android 通知渠道管理 (重要性级别配置)
+
+### 📖 用户引导
+- **新手引导**: 功能介绍、操作指引 (tutorial_coach_mark)
+- **高亮提示**: 交互式元素高亮教程
 
 ## 🚀 快速开始
 
@@ -164,47 +199,125 @@ dart fix --apply
 
 ```
 lib/
-├── main.dart                 # 应用入口
+├── main.dart                    # 应用入口
 ├── app/
-│   ├── app.dart             # MaterialApp 配置
-│   └── theme.dart           # 主题配置
+│   ├── app.dart                # MaterialApp 配置
+│   └── theme.dart              # 主题配置 (6种颜色)
+├── l10n/
+│   ├── app_localizations.dart  # 国际化抽象类
+│   ├── app_localizations_en.dart # 英文翻译
+│   └── app_localizations_zh.dart # 中文翻译
+├── services/
+│   └── notification_service.dart # 通知服务
+├── providers/
+│   └── locale_provider.dart    # 语言状态管理
 └── screens/
-    ├── home_screen.dart     # 主页面
-    ├── components/          # Material 组件展示
+    ├── home_screen.dart        # 主页面
+    ├── settings_screen.dart    # 设置页面
+    ├── components/             # Material 组件展示
     │   ├── buttons_screen.dart
     │   ├── inputs_screen.dart
     │   ├── selections_screen.dart
     │   ├── dialogs_screen.dart
     │   ├── navigation_screen.dart
     │   └── cards_lists_screen.dart
-    ├── animations/          # 动画展示
-    │   └── animations_screen.dart
-    ├── storage/             # 数据存储展示
+    ├── animations/             # 动画展示
+    │   ├── animations_screen.dart
+    │   ├── loading_animations_demo.dart
+    │   ├── fireworks_demo.dart
+    │   └── page_transitions_demo.dart
+    ├── storage/                # 数据存储展示
     │   └── storage_screen.dart
-    ├── hardware/            # 硬件调用展示
+    ├── hardware/               # 硬件调用展示
     │   └── hardware_screen.dart
-    └── system/              # 系统调用展示
-        └── system_screen.dart
+    ├── system/                 # 系统调用展示
+    │   └── system_screen.dart
+    ├── utilities/              # 实用工具组件
+    │   ├── utilities_screen.dart
+    │   ├── charts_demo.dart
+    │   ├── calendar_demo.dart
+    │   ├── particles_demo.dart
+    │   ├── heatmap_demo.dart
+    │   └── progress_indicators_demo.dart
+    ├── business/               # 业务组件
+    │   ├── business_components_screen.dart
+    │   ├── payment_demo.dart
+    │   ├── amount_input_demo.dart
+    │   ├── qr_scanner_demo.dart
+    │   └── otp_input_demo.dart
+    ├── notifications/          # 通知演示
+    │   ├── notifications_screen.dart
+    │   ├── local_notification_demo.dart
+    │   ├── scheduled_notification_demo.dart
+    │   └── notification_channels_demo.dart
+    └── onboarding/             # 用户引导
+        └── onboarding_screen.dart
 ```
 
 ## 📋 依赖说明
 
-| 包名                 | 用途                   |
-| -------------------- | ---------------------- |
-| `animations`         | Material Design 动画库 |
-| `vibration`          | 振动反馈               |
-| `shared_preferences` | 键值对存储             |
-| `sqflite`            | SQLite 数据库          |
-| `path_provider`      | 获取系统目录路径       |
-| `file_picker`        | 文件选择器             |
-| `share_plus`         | 系统分享               |
-| `url_launcher`       | URL 启动               |
-| `camera`             | 相机功能               |
-| `local_auth`         | 生物识别               |
-| `sensors_plus`       | 传感器数据             |
-| `permission_handler` | 权限管理               |
-| `device_info_plus`   | 设备信息               |
-| `image_picker`       | 图片选择               |
+### 核心依赖
+
+| 包名         | 版本 | 用途                   |
+| ------------ | ---- | ---------------------- |
+| `provider`   | ^6.0 | 状态管理               |
+| `animations` | ^2.0 | Material Design 动画库 |
+| `vibration`  | ^2.0 | 振动反馈               |
+
+### 数据存储
+
+| 包名                 | 版本 | 用途             |
+| -------------------- | ---- | ---------------- |
+| `shared_preferences` | ^2.5 | 键值对存储       |
+| `sqflite`            | ^2.4 | SQLite 数据库    |
+| `path_provider`      | ^2.1 | 获取系统目录路径 |
+
+### 系统功能
+
+| 包名                 | 版本  | 用途       |
+| -------------------- | ----- | ---------- |
+| `file_picker`        | ^8.1  | 文件选择器 |
+| `share_plus`         | ^10.1 | 系统分享   |
+| `url_launcher`       | ^6.3  | URL 启动   |
+| `permission_handler` | ^11.4 | 权限管理   |
+
+### 硬件功能
+
+| 包名               | 版本  | 用途       |
+| ------------------ | ----- | ---------- |
+| `camera`           | ^0.11 | 相机功能   |
+| `local_auth`       | ^2.3  | 生物识别   |
+| `sensors_plus`     | ^6.1  | 传感器数据 |
+| `device_info_plus` | ^11.2 | 设备信息   |
+| `image_picker`     | ^1.1  | 图片选择   |
+
+### 实用工具
+
+| 包名              | 版本  | 用途          |
+| ----------------- | ----- | ------------- |
+| `fl_chart`        | ^0.70 | 图表组件      |
+| `table_calendar`  | ^3.2  | 日历组件      |
+| `confetti_widget` | ^0.4  | 烟花/礼花效果 |
+
+### 业务组件
+
+| 包名             | 版本 | 用途           |
+| ---------------- | ---- | -------------- |
+| `mobile_scanner` | ^7.0 | 二维码扫描     |
+| `pinput`         | ^5.0 | OTP 验证码输入 |
+
+### 通知推送
+
+| 包名                          | 版本  | 用途     |
+| ----------------------------- | ----- | -------- |
+| `flutter_local_notifications` | ^18.0 | 本地通知 |
+| `timezone`                    | ^0.9  | 时区支持 |
+
+### 用户引导
+
+| 包名                  | 版本 | 用途          |
+| --------------------- | ---- | ------------- |
+| `tutorial_coach_mark` | ^1.2 | 新手引导/教程 |
 
 ## ⚙️ 平台配置
 
@@ -249,6 +362,35 @@ lib/
 
 欢迎提交 Issue 和 Pull Request!
 
-## 📄 许可证
+## � 相关文档
+
+- [APK 包体积优化指南](docs/APK_OPTIMIZATION.md) - 详细的安装包优化方案
+- [小米 HyperOS 适配指南](docs/HYPEROS_ADAPTATION.md) - 小米设备功能适配说明
+
+## 📦 应用信息
+
+| 项目                   | 值                           |
+| ---------------------- | ---------------------------- |
+| Android 包名           | `fun.geek213.track_expenses` |
+| iOS Bundle ID          | `fun.geek213.trackExpenses`  |
+| 最低 Android 版本      | Android 8.0 (API 26)         |
+| 最低 iOS 版本          | iOS 12.0                     |
+| APK 大小 (arm64-v8a)   | ~28 MB                       |
+| APK 大小 (armeabi-v7a) | ~24 MB                       |
+
+## 🔄 版本历史
+
+### v1.0.0
+
+- 🎉 完整的 Material Design 3 组件展示
+- 🎨 6 种主题色 + 深色模式支持
+- 🌍 中英文双语支持
+- 📊 实用工具组件 (图表、日历、热力图等)
+- 💼 业务组件 (支付、二维码、OTP 等)
+- 🔔 本地通知支持
+- 📖 新手引导功能
+- ⚡ 包体积优化 (分架构 APK)
+
+## �📄 许可证
 
 MIT License

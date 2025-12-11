@@ -2,6 +2,10 @@ import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'fireworks_demo.dart';
+import 'loading_animations_demo.dart';
+import 'page_transitions_demo.dart';
+
 class AnimationsScreen extends StatefulWidget {
   const AnimationsScreen({super.key});
 
@@ -41,6 +45,9 @@ class _AnimationsScreenState extends State<AnimationsScreen> with SingleTickerPr
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            // 高级动画演示入口
+            _buildAdvancedAnimationsSection(context),
+            const SizedBox(height: 24),
             _buildSection(
               title: 'AnimatedContainer 隐式动画',
               child: Column(
@@ -446,6 +453,85 @@ class _AnimationsScreenState extends State<AnimationsScreen> with SingleTickerPr
   void _showAnimatedListDemo(BuildContext context) {
     HapticFeedback.lightImpact();
     Navigator.push(context, MaterialPageRoute(builder: (context) => const _AnimatedListDemoPage()));
+  }
+
+  Widget _buildAdvancedAnimationsSection(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(Icons.auto_awesome, color: colorScheme.primary),
+                const SizedBox(width: 8),
+                Text(
+                  '高级动画演示',
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            _buildAnimationEntry(
+              context,
+              title: '加载动画',
+              description: '各种加载效果：脉冲、旋转、波浪、骨架屏',
+              icon: Icons.hourglass_empty,
+              color: Colors.blue,
+              screen: const LoadingAnimationsDemoScreen(),
+            ),
+            const SizedBox(height: 8),
+            _buildAnimationEntry(
+              context,
+              title: '页面切换',
+              description: 'Material Motion 规范转场动画',
+              icon: Icons.swap_horiz,
+              color: Colors.green,
+              screen: const PageTransitionsDemoScreen(),
+            ),
+            const SizedBox(height: 8),
+            _buildAnimationEntry(
+              context,
+              title: '烟花效果',
+              description: '粒子烟花、彩纸庆祝效果',
+              icon: Icons.celebration,
+              color: Colors.orange,
+              screen: const FireworksDemoScreen(),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildAnimationEntry(
+    BuildContext context, {
+    required String title,
+    required String description,
+    required IconData icon,
+    required Color color,
+    required Widget screen,
+  }) {
+    return Card(
+      color: Theme.of(context).colorScheme.surfaceContainerHighest,
+      child: ListTile(
+        leading: CircleAvatar(
+          backgroundColor: color.withOpacity(0.2),
+          child: Icon(icon, color: color),
+        ),
+        title: Text(title),
+        subtitle: Text(description),
+        trailing: const Icon(Icons.chevron_right),
+        onTap: () {
+          HapticFeedback.lightImpact();
+          Navigator.push(context, MaterialPageRoute(builder: (_) => screen));
+        },
+      ),
+    );
   }
 }
 

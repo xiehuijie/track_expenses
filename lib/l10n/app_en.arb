@@ -1,0 +1,58 @@
+{
+  "@@locale": "en",
+  "appTitle": "Material Design Showcase",
+  "@appTitle": {
+    "description": "The application title"
+  },
+  "themeSettings": "Theme Settings",
+  "themeMode": "Theme Mode",
+  "themeColor": "Theme Color",
+  "followSystem": "System",
+  "lightMode": "Light",
+  "darkMode": "Dark",
+  "toggleTheme": "Toggle Theme",
+  
+  "categoryMaterial": "Material Components",
+  "categoryAnimations": "Animations & Layout",
+  "categoryStorage": "Data Storage",
+  "categoryHardware": "Hardware",
+  "categorySystem": "System",
+  
+  "buttons": "Buttons",
+  "buttonsDesc": "ElevatedButton, FilledButton, TextButton, etc.",
+  "inputs": "Input Fields",
+  "inputsDesc": "TextField, TextFormField, Search Bar",
+  "selections": "Selection Controls",
+  "selectionsDesc": "Switch, Checkbox, Radio, Slider, Chips",
+  "dialogs": "Dialogs & Alerts",
+  "dialogsDesc": "Dialog, BottomSheet, Snackbar, Toast",
+  "navigation": "Navigation",
+  "navigationDesc": "AppBar, Drawer, TabBar, BottomNav",
+  "cardsLists": "Cards & Lists",
+  "cardsListsDesc": "Card, ListTile, ExpansionTile, GridView",
+  
+  "animations": "Animation Effects",
+  "animationsDesc": "Page transitions, Hero, Implicit/Explicit animations",
+  
+  "storage": "Storage Capabilities",
+  "storageDesc": "SharedPreferences, SQLite, File Operations",
+  
+  "hardware": "Hardware Features",
+  "hardwareDesc": "Camera, Biometric, Sensors",
+  
+  "system": "System Features",
+  "systemDesc": "File picker, Share, URL launcher",
+  
+  "colorPurple": "Purple",
+  "colorBlue": "Blue",
+  "colorTeal": "Teal",
+  "colorGreen": "Green",
+  "colorOrange": "Orange",
+  "colorRed": "Red",
+  "colorPink": "Pink",
+  "colorIndigo": "Indigo",
+  
+  "language": "Language",
+  "chinese": "Chinese",
+  "english": "English"
+}
