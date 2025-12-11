@@ -5,17 +5,26 @@ import 'package:flutter/services.dart';
 import '../app/theme.dart';
 import '../l10n/generated/app_localizations.dart';
 import 'animations/animations_screen.dart';
+import 'animations/container_transform_demo.dart';
+import 'animations/shared_axis_demo.dart';
 import 'business/business_components_screen.dart';
+import 'business/category_selector_demo.dart';
+import 'business/currency_picker_demo.dart';
+import 'business/emoji_icon_picker_demo.dart';
 import 'components/buttons_screen.dart';
 import 'components/cards_lists_screen.dart';
 import 'components/dialogs_screen.dart';
+import 'components/forms_screen.dart';
+import 'components/info_display_screen.dart';
 import 'components/inputs_screen.dart';
+import 'components/layouts_screen.dart';
 import 'components/navigation_screen.dart';
 import 'components/selections_screen.dart';
 import 'hardware/hardware_screen.dart';
 import 'notifications/notifications_screen.dart';
 import 'onboarding/onboarding_screen.dart';
 import 'storage/storage_screen.dart';
+import 'system/map_location_demo.dart';
 import 'system/system_screen.dart';
 import 'utilities/utility_components_screen.dart';
 
@@ -87,10 +96,28 @@ class _HomeScreenState extends State<HomeScreen> {
           icon: Icons.view_list,
           screen: const CardsListsScreen(),
         ),
+        _DemoItem(
+          title: '表单组件',
+          subtitle: '表单验证、输入框、下拉菜单、评分',
+          icon: Icons.article,
+          screen: const FormsScreen(),
+        ),
+        _DemoItem(
+          title: '信息展示',
+          subtitle: 'Badge、Chip、Divider、进度指示器',
+          icon: Icons.info,
+          screen: const InfoDisplayScreen(),
+        ),
+        _DemoItem(
+          title: '布局组件',
+          subtitle: 'Stack、Wrap、GridView、Flexible',
+          icon: Icons.view_quilt,
+          screen: const LayoutsScreen(),
+        ),
       ],
     ),
     _CategoryItem(
-      title: '动画与布局',
+      title: '动画与效果',
       icon: Icons.animation,
       items: [
         _DemoItem(
@@ -99,48 +126,18 @@ class _HomeScreenState extends State<HomeScreen> {
           icon: Icons.motion_photos_on,
           screen: const AnimationsScreen(),
         ),
-      ],
-    ),
-    _CategoryItem(
-      title: '数据存储',
-      icon: Icons.storage,
-      items: [
         _DemoItem(
-          title: '存储能力',
-          subtitle: 'SharedPreferences, SQLite, 文件操作',
-          icon: Icons.save,
-          screen: const StorageScreen(),
+          title: '容器变换动画',
+          subtitle: 'OpenContainer、淡入淡出、卡片过渡',
+          icon: Icons.flip_to_front,
+          screen: const ContainerTransformDemo(),
         ),
-      ],
-    ),
-    _CategoryItem(
-      title: '硬件调用',
-      icon: Icons.devices,
-      items: [
         _DemoItem(
-          title: '硬件功能',
-          subtitle: '摄像头、生物识别、传感器',
-          icon: Icons.camera_alt,
-          screen: const HardwareScreen(),
+          title: '共享轴动画',
+          subtitle: '水平、垂直、缩放过渡动画',
+          icon: Icons.swap_horiz,
+          screen: const SharedAxisDemo(),
         ),
-      ],
-    ),
-    _CategoryItem(
-      title: '系统调用',
-      icon: Icons.settings_applications,
-      items: [
-        _DemoItem(
-          title: '系统功能',
-          subtitle: '文件选择、分享、URL启动',
-          icon: Icons.share,
-          screen: const SystemScreen(),
-        ),
-      ],
-    ),
-    _CategoryItem(
-      title: '工具组件',
-      icon: Icons.construction,
-      items: [
         _DemoItem(
           title: '可视化组件',
           subtitle: '图表、日历、热力图、进度条、粒子效果',
@@ -150,38 +147,74 @@ class _HomeScreenState extends State<HomeScreen> {
       ],
     ),
     _CategoryItem(
-      title: '业务组件',
-      icon: Icons.business_center,
+      title: '系统能力',
+      icon: Icons.settings_applications,
       items: [
         _DemoItem(
-          title: '业务场景组件',
-          subtitle: '支付、金额输入、验证码、二维码扫描',
-          icon: Icons.payment,
-          screen: const BusinessComponentsScreen(),
+          title: '数据存储',
+          subtitle: 'SharedPreferences, SQLite, 文件操作',
+          icon: Icons.save,
+          screen: const StorageScreen(),
         ),
-      ],
-    ),
-    _CategoryItem(
-      title: '通知推送',
-      icon: Icons.notifications,
-      items: [
         _DemoItem(
-          title: '通知功能',
+          title: '硬件功能',
+          subtitle: '摄像头、生物识别、传感器',
+          icon: Icons.camera_alt,
+          screen: const HardwareScreen(),
+        ),
+        _DemoItem(
+          title: '系统功能',
+          subtitle: '文件选择、分享、URL启动',
+          icon: Icons.share,
+          screen: const SystemScreen(),
+        ),
+        _DemoItem(
+          title: '地图定位',
+          subtitle: '位置选择、坐标查看、系统地图',
+          icon: Icons.map,
+          screen: const MapLocationDemo(),
+        ),
+        _DemoItem(
+          title: '通知推送',
           subtitle: '本地通知、定时通知、通知渠道',
           icon: Icons.notifications_active,
           screen: const NotificationsScreen(),
         ),
-      ],
-    ),
-    _CategoryItem(
-      title: '引导教程',
-      icon: Icons.school,
-      items: [
         _DemoItem(
-          title: '引导功能',
+          title: '引导教程',
           subtitle: '功能引导、欢迎流程、功能提示',
           icon: Icons.tour,
           screen: const OnboardingScreen(),
+        ),
+      ],
+    ),
+    _CategoryItem(
+      title: '业务能力',
+      icon: Icons.business_center,
+      items: [
+        _DemoItem(
+          title: '支付组件',
+          subtitle: '支付方式选择、订单信息展示',
+          icon: Icons.payment,
+          screen: const BusinessComponentsScreen(),
+        ),
+        _DemoItem(
+          title: '类别选择',
+          subtitle: '收支分类、图标选择、颜色标识',
+          icon: Icons.category,
+          screen: const CategorySelectorDemo(),
+        ),
+        _DemoItem(
+          title: '货币选择',
+          subtitle: '多国货币、汇率符号、国旗显示',
+          icon: Icons.money,
+          screen: const CurrencyPickerDemo(),
+        ),
+        _DemoItem(
+          title: 'Emoji & 图标',
+          subtitle: '表情选择、Material 图标库',
+          icon: Icons.emoji_emotions,
+          screen: const EmojiIconPickerDemo(),
         ),
       ],
     ),
@@ -195,7 +228,8 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Material Design Showcase'),
-        backgroundColor: colorScheme.inversePrimary,
+        backgroundColor: colorScheme.surfaceContainer,
+        foregroundColor: colorScheme.onSurface,
         actions: [
           IconButton(
             icon: const Icon(Icons.palette_outlined),
@@ -212,6 +246,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
+      backgroundColor: colorScheme.surface,
       body: _buildBody(),
       bottomNavigationBar: NavigationBar(
         selectedIndex: _selectedIndex,
@@ -228,6 +263,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildBody() {
     final category = _categories[_selectedIndex];
+    final colorScheme = Theme.of(context).colorScheme;
 
     return AnimatedSwitcher(
       duration: const Duration(milliseconds: 300),
@@ -243,14 +279,17 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         );
       },
-      child: ListView.builder(
+      child: Container(
         key: ValueKey(_selectedIndex),
-        padding: const EdgeInsets.all(16),
-        itemCount: category.items.length,
-        itemBuilder: (context, index) {
-          final item = category.items[index];
-          return _buildDemoCard(item);
-        },
+        color: colorScheme.surface,
+        child: ListView.builder(
+          padding: const EdgeInsets.all(16),
+          itemCount: category.items.length,
+          itemBuilder: (context, index) {
+            final item = category.items[index];
+            return _buildDemoCard(item);
+          },
+        ),
       ),
     );
   }
@@ -263,24 +302,34 @@ class _HomeScreenState extends State<HomeScreen> {
         transitionDuration: const Duration(milliseconds: 400),
         openBuilder: (context, _) => item.screen,
         closedShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        closedElevation: 2,
+        closedElevation: 0,
+        closedColor: Theme.of(context).colorScheme.surface,
         closedBuilder: (context, openContainer) {
-          return ListTile(
-            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            leading: CircleAvatar(
-              backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-              child: Icon(item.icon, color: Theme.of(context).colorScheme.onPrimaryContainer),
+          final colorScheme = Theme.of(context).colorScheme;
+          return Card(
+            elevation: 0,
+            color: colorScheme.surfaceContainerHighest,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+            child: ListTile(
+              contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              leading: CircleAvatar(
+                backgroundColor: colorScheme.primaryContainer,
+                child: Icon(item.icon, color: colorScheme.onPrimaryContainer),
+              ),
+              title: Text(
+                item.title,
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w600,
+                  color: colorScheme.onSurface,
+                ),
+              ),
+              subtitle: Text(item.subtitle, style: TextStyle(color: colorScheme.onSurfaceVariant)),
+              trailing: Icon(Icons.chevron_right, color: colorScheme.onSurfaceVariant),
+              onTap: () {
+                HapticFeedback.lightImpact();
+                openContainer();
+              },
             ),
-            title: Text(
-              item.title,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
-            ),
-            subtitle: Text(item.subtitle),
-            trailing: const Icon(Icons.chevron_right),
-            onTap: () {
-              HapticFeedback.lightImpact();
-              openContainer();
-            },
           );
         },
       ),
