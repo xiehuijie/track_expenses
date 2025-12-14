@@ -1,4 +1,4 @@
-package `fun`.geek213.track_expenses
+package `fun`.geek213.trackExpenses
 
 import io.flutter.embedding.android.FlutterFragmentActivity
 

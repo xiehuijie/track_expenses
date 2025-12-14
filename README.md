@@ -10,6 +10,7 @@
 ## 📱 功能特性
 
 ### Material Design 组件
+
 - **按钮组件**: ElevatedButton, FilledButton, OutlinedButton, TextButton, IconButton, FAB, SegmentedButton
 - **输入组件**: TextField, TextFormField, SearchBar, DropdownMenu, DatePicker, TimePicker
 - **选择组件**: Switch, Checkbox, Radio, Slider, Chips (Filter, Choice, Action, Input)
@@ -18,12 +19,14 @@
 - **列表与卡片**: Card, ListTile, ExpansionTile, GridView, ReorderableListView, Dismissible, DataTable
 
 ### 🎨 主题与国际化
+
 - **6种主题色**: 深蓝(默认)、蓝绿色、紫色、橙色、绿色、粉色
 - **深色模式**: 完整的深色主题支持
 - **多语言**: 中文、English 双语支持
 - **Material 3**: 完整的 Material Design 3 设计规范
 
 ### 动画效果
+
 - **隐式动画**: AnimatedContainer, AnimatedOpacity, AnimatedCrossFade, AnimatedRotation, AnimatedScale
 - **显式动画**: AnimationController, RotationTransition, SlideTransition, FadeTransition
 - **页面切换**: SharedAxisTransition, FadeThrough, OpenContainer (Material Motion)
@@ -33,17 +36,20 @@
 - **粒子效果**: 烟花/礼花庆祝动画 (confetti)
 
 ### 数据存储
+
 - **SharedPreferences**: 键值对持久化存储
 - **SQLite**: 结构化数据库存储 (sqflite)
 - **文件操作**: 文本文件、JSON 文件读写
 
 ### 硬件调用
+
 - **相机**: 相机预览、拍照、图片选择
 - **生物识别**: 指纹、面部识别验证
 - **传感器**: 加速度计、陀螺仪、磁力计
 - **设备信息**: 获取设备详细信息
 
 ### 系统调用
+
 - **文件选择**: 单文件、多文件、图片、自定义类型
 - **分享**: 文本、文件、链接分享
 - **URL 启动**: 打开网页、邮件、电话、短信、地图
@@ -51,6 +57,7 @@
 - **触觉反馈**: 轻触、中度、重度、选择、振动
 
 ### 📊 实用工具组件
+
 - **图表组件**: 折线图、柱状图、饼图、雷达图 (fl_chart)
 - **日历组件**: 月视图、周视图、事件标记 (table_calendar)
 - **粒子动画**: 自定义粒子效果动画
@@ -58,17 +65,20 @@
 - **进度指示器**: 线性、圆形、百分比、步骤进度
 
 ### 💼 业务组件
+
 - **支付组件**: 支付方式选择、订单信息展示
 - **金额输入**: 带格式化的金额输入键盘
 - **二维码扫描**: 实时 QR 码扫描与识别 (mobile_scanner)
 - **验证码输入**: OTP 验证码输入组件
 
 ### 🔔 通知推送
+
 - **本地通知**: 即时通知发送 (flutter_local_notifications)
 - **定时通知**: 计划任务通知、时区支持
 - **通知渠道**: Android 通知渠道管理 (重要性级别配置)
 
 ### 📖 用户引导
+
 - **新手引导**: 功能介绍、操作指引 (tutorial_coach_mark)
 - **高亮提示**: 交互式元素高亮教程
 
@@ -369,14 +379,14 @@ lib/
 
 ## 📦 应用信息
 
-| 项目                   | 值                           |
-| ---------------------- | ---------------------------- |
-| Android 包名           | `fun.geek213.track_expenses` |
-| iOS Bundle ID          | `fun.geek213.trackExpenses`  |
-| 最低 Android 版本      | Android 8.0 (API 26)         |
-| 最低 iOS 版本          | iOS 12.0                     |
-| APK 大小 (arm64-v8a)   | ~28 MB                       |
-| APK 大小 (armeabi-v7a) | ~24 MB                       |
+| 项目                   | 值                          |
+| ---------------------- | --------------------------- |
+| Android 包名           | `fun.geek213.trackExpenses` |
+| iOS Bundle ID          | `fun.geek213.trackExpenses` |
+| 最低 Android 版本      | Android 8.0 (API 26)        |
+| 最低 iOS 版本          | iOS 12.0                    |
+| APK 大小 (arm64-v8a)   | ~28 MB                      |
+| APK 大小 (armeabi-v7a) | ~24 MB                      |
 
 ## 🔄 版本历史
 
