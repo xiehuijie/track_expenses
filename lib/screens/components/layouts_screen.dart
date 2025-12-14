@@ -38,15 +38,12 @@ class LayoutsScreen extends StatelessWidget {
                       Text(
                         '堆叠布局示例',
                         style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       const SizedBox(height: 4),
-                      const Text(
-                        '元素可以重叠放置',
-                        style: TextStyle(color: Colors.white),
-                      ),
+                      const Text('元素可以重叠放置', style: TextStyle(color: Colors.white)),
                     ],
                   ),
                 ),
@@ -81,9 +78,7 @@ class LayoutsScreen extends StatelessWidget {
                   10,
                   (index) => Chip(
                     label: Text('标签 ${index + 1}'),
-                    avatar: CircleAvatar(
-                      child: Text('${index + 1}'),
-                    ),
+                    avatar: CircleAvatar(child: Text('${index + 1}')),
                   ),
                 ),
               ),
@@ -120,9 +115,7 @@ class LayoutsScreen extends StatelessWidget {
                         const SizedBox(height: 8),
                         Text(
                           '项目 ${index + 1}',
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.onPrimaryContainer,
-                          ),
+                          style: TextStyle(color: Theme.of(context).colorScheme.onPrimaryContainer),
                         ),
                       ],
                     ),
@@ -221,10 +214,7 @@ class LayoutsScreen extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Theme.of(context).colorScheme.secondaryContainer,
                     borderRadius: BorderRadius.circular(12),
-                    border: Border.all(
-                      color: Theme.of(context).colorScheme.secondary,
-                      width: 2,
-                    ),
+                    border: Border.all(color: Theme.of(context).colorScheme.secondary, width: 2),
                   ),
                   child: Column(
                     children: [
@@ -326,9 +316,7 @@ class LayoutsScreen extends StatelessWidget {
   Widget _buildSectionTitle(BuildContext context, String title) {
     return Text(
       title,
-      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-            fontWeight: FontWeight.bold,
-          ),
+      style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
     );
   }
 

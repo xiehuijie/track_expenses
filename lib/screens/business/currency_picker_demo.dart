@@ -51,10 +51,7 @@ class _CurrencyPickerDemoState extends State<CurrencyPickerDemo> {
     final colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('货币选择'),
-        backgroundColor: colorScheme.surfaceContainer,
-      ),
+      appBar: AppBar(title: const Text('货币选择'), backgroundColor: colorScheme.surfaceContainer),
       body: Column(
         children: [
           // 搜索栏
@@ -73,9 +70,7 @@ class _CurrencyPickerDemoState extends State<CurrencyPickerDemo> {
                         },
                       )
                     : null,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                 filled: true,
                 fillColor: colorScheme.surface,
               ),
@@ -96,10 +91,7 @@ class _CurrencyPickerDemoState extends State<CurrencyPickerDemo> {
               ),
               child: Row(
                 children: [
-                  Text(
-                    _selectedCurrency!.flag,
-                    style: const TextStyle(fontSize: 32),
-                  ),
+                  Text(_selectedCurrency!.flag, style: const TextStyle(fontSize: 32)),
                   const SizedBox(width: 16),
                   Expanded(
                     child: Column(
@@ -122,10 +114,7 @@ class _CurrencyPickerDemoState extends State<CurrencyPickerDemo> {
                         ),
                         Text(
                           _selectedCurrency!.symbol,
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: colorScheme.onPrimaryContainer,
-                          ),
+                          style: TextStyle(fontSize: 14, color: colorScheme.onPrimaryContainer),
                         ),
                       ],
                     ),
@@ -141,18 +130,9 @@ class _CurrencyPickerDemoState extends State<CurrencyPickerDemo> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(
-                          Icons.search_off,
-                          size: 64,
-                          color: colorScheme.onSurfaceVariant,
-                        ),
+                        Icon(Icons.search_off, size: 64, color: colorScheme.onSurfaceVariant),
                         const SizedBox(height: 16),
-                        Text(
-                          '未找到货币',
-                          style: TextStyle(
-                            color: colorScheme.onSurfaceVariant,
-                          ),
-                        ),
+                        Text('未找到货币', style: TextStyle(color: colorScheme.onSurfaceVariant)),
                       ],
                     ),
                   )
@@ -169,10 +149,7 @@ class _CurrencyPickerDemoState extends State<CurrencyPickerDemo> {
                             ? colorScheme.secondaryContainer
                             : colorScheme.surfaceContainerHighest,
                         child: ListTile(
-                          leading: Text(
-                            currency.flag,
-                            style: const TextStyle(fontSize: 32),
-                          ),
+                          leading: Text(currency.flag, style: const TextStyle(fontSize: 32)),
                           title: Text(
                             currency.name,
                             style: TextStyle(
@@ -189,10 +166,7 @@ class _CurrencyPickerDemoState extends State<CurrencyPickerDemo> {
                             ),
                           ),
                           trailing: isSelected
-                              ? Icon(
-                                  Icons.check_circle,
-                                  color: colorScheme.onSecondaryContainer,
-                                )
+                              ? Icon(Icons.check_circle, color: colorScheme.onSecondaryContainer)
                               : null,
                           onTap: () {
                             HapticFeedback.lightImpact();
@@ -217,10 +191,5 @@ class Currency {
   final String symbol;
   final String flag;
 
-  Currency({
-    required this.code,
-    required this.name,
-    required this.symbol,
-    required this.flag,
-  });
+  Currency({required this.code, required this.name, required this.symbol, required this.flag});
 }

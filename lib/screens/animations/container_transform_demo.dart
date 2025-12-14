@@ -22,9 +22,7 @@ class ContainerTransformDemo extends StatelessWidget {
               padding: const EdgeInsets.all(16),
               child: Text(
                 '容器变换动画可以在两个界面之间创建平滑的过渡效果，让用户感受到连贯的交互体验。',
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.onPrimaryContainer,
-                ),
+                style: TextStyle(color: Theme.of(context).colorScheme.onPrimaryContainer),
               ),
             ),
           ),
@@ -36,13 +34,7 @@ class ContainerTransformDemo extends StatelessWidget {
           _OpenContainerWrapper(
             transitionType: ContainerTransitionType.fadeThrough,
             closedBuilder: (context, action) {
-              return _buildSmallCard(
-                context,
-                '淡入淡出过渡',
-                '点击查看详情',
-                Icons.blur_on,
-                Colors.blue,
-              );
+              return _buildSmallCard(context, '淡入淡出过渡', '点击查看详情', Icons.blur_on, Colors.blue);
             },
           ),
           const SizedBox(height: 16),
@@ -53,13 +45,7 @@ class ContainerTransformDemo extends StatelessWidget {
           _OpenContainerWrapper(
             transitionType: ContainerTransitionType.fade,
             closedBuilder: (context, action) {
-              return _buildSmallCard(
-                context,
-                '渐变过渡',
-                '点击查看详情',
-                Icons.filter_vintage,
-                Colors.green,
-              );
+              return _buildSmallCard(context, '渐变过渡', '点击查看详情', Icons.filter_vintage, Colors.green);
             },
           ),
           const SizedBox(height: 32),
@@ -88,16 +74,9 @@ class ContainerTransformDemo extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(
-                            _getIconForIndex(index),
-                            size: 48,
-                            color: _getColorForIndex(index),
-                          ),
+                          Icon(_getIconForIndex(index), size: 48, color: _getColorForIndex(index)),
                           const SizedBox(height: 12),
-                          Text(
-                            '卡片 ${index + 1}',
-                            style: Theme.of(context).textTheme.titleMedium,
-                          ),
+                          Text('卡片 ${index + 1}', style: Theme.of(context).textTheme.titleMedium),
                         ],
                       ),
                     ),
@@ -121,10 +100,7 @@ class ContainerTransformDemo extends StatelessWidget {
                     child: ListTile(
                       leading: CircleAvatar(
                         backgroundColor: _getColorForIndex(index),
-                        child: Icon(
-                          _getIconForIndex(index),
-                          color: Colors.white,
-                        ),
+                        child: Icon(_getIconForIndex(index), color: Colors.white),
                       ),
                       title: Text('列表项 ${index + 1}'),
                       subtitle: const Text('点击查看详细内容'),
@@ -144,9 +120,7 @@ class ContainerTransformDemo extends StatelessWidget {
   Widget _buildSectionTitle(BuildContext context, String title) {
     return Text(
       title,
-      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-            fontWeight: FontWeight.bold,
-          ),
+      style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
     );
   }
 
@@ -179,16 +153,16 @@ class ContainerTransformDemo extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     subtitle,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: Theme.of(context).colorScheme.onSurfaceVariant,
-                        ),
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    ),
                   ),
                 ],
               ),
@@ -212,10 +186,7 @@ class ContainerTransformDemo extends StatelessWidget {
 }
 
 class _OpenContainerWrapper extends StatelessWidget {
-  const _OpenContainerWrapper({
-    required this.closedBuilder,
-    required this.transitionType,
-  });
+  const _OpenContainerWrapper({required this.closedBuilder, required this.transitionType});
 
   final CloseContainerBuilder closedBuilder;
   final ContainerTransitionType transitionType;
@@ -244,35 +215,22 @@ class _DetailPage extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('详情页面'),
-        backgroundColor: colorScheme.surfaceContainer,
-      ),
+      appBar: AppBar(title: const Text('详情页面'), backgroundColor: colorScheme.surfaceContainer),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
           Container(
             height: 200,
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [colorScheme.primary, colorScheme.secondary],
-              ),
+              gradient: LinearGradient(colors: [colorScheme.primary, colorScheme.secondary]),
               borderRadius: BorderRadius.circular(16),
             ),
-            child: Center(
-              child: Icon(
-                Icons.image,
-                size: 64,
-                color: colorScheme.onPrimary,
-              ),
-            ),
+            child: Center(child: Icon(Icons.image, size: 64, color: colorScheme.onPrimary)),
           ),
           const SizedBox(height: 24),
           Text(
             '详细内容',
-            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+            style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 16),
           Text(

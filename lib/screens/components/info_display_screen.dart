@@ -9,10 +9,7 @@ class InfoDisplayScreen extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('信息展示组件'),
-        backgroundColor: colorScheme.surfaceContainer,
-      ),
+      appBar: AppBar(title: const Text('信息展示组件'), backgroundColor: colorScheme.surfaceContainer),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
@@ -59,14 +56,8 @@ class InfoDisplayScreen extends StatelessWidget {
                 ),
                 label: const Text('Avatar Chip'),
               ),
-              Chip(
-                label: const Text('Delete Chip'),
-                onDeleted: () {},
-              ),
-              Chip(
-                label: const Text('Icon Chip'),
-                avatar: const Icon(Icons.star),
-              ),
+              Chip(label: const Text('Delete Chip'), onDeleted: () {}),
+              Chip(label: const Text('Icon Chip'), avatar: const Icon(Icons.star)),
               Chip(
                 label: const Text('Colored Chip'),
                 backgroundColor: colorScheme.tertiaryContainer,
@@ -145,31 +136,19 @@ class InfoDisplayScreen extends StatelessWidget {
             children: [
               Tooltip(
                 message: '这是一个图标按钮',
-                child: IconButton(
-                  icon: const Icon(Icons.info),
-                  onPressed: () {},
-                ),
+                child: IconButton(icon: const Icon(Icons.info), onPressed: () {}),
               ),
               Tooltip(
                 message: '添加新项目',
-                child: IconButton(
-                  icon: const Icon(Icons.add),
-                  onPressed: () {},
-                ),
+                child: IconButton(icon: const Icon(Icons.add), onPressed: () {}),
               ),
               Tooltip(
                 message: '设置选项',
-                child: IconButton(
-                  icon: const Icon(Icons.settings),
-                  onPressed: () {},
-                ),
+                child: IconButton(icon: const Icon(Icons.settings), onPressed: () {}),
               ),
               Tooltip(
                 message: '分享内容',
-                child: IconButton(
-                  icon: const Icon(Icons.share),
-                  onPressed: () {},
-                ),
+                child: IconButton(icon: const Icon(Icons.share), onPressed: () {}),
               ),
             ],
           ),
@@ -179,23 +158,9 @@ class InfoDisplayScreen extends StatelessWidget {
           // Info Cards
           _buildSectionTitle(context, '信息卡片'),
           const SizedBox(height: 12),
-          _buildInfoCard(
-            context,
-            '总支出',
-            '¥12,345.67',
-            Icons.trending_up,
-            Colors.red,
-            '+15% 本月',
-          ),
+          _buildInfoCard(context, '总支出', '¥12,345.67', Icons.trending_up, Colors.red, '+15% 本月'),
           const SizedBox(height: 12),
-          _buildInfoCard(
-            context,
-            '总收入',
-            '¥23,456.78',
-            Icons.trending_down,
-            Colors.green,
-            '+8% 本月',
-          ),
+          _buildInfoCard(context, '总收入', '¥23,456.78', Icons.trending_down, Colors.green, '+8% 本月'),
           const SizedBox(height: 12),
           _buildInfoCard(
             context,
@@ -232,9 +197,7 @@ class InfoDisplayScreen extends StatelessWidget {
   Widget _buildSectionTitle(BuildContext context, String title) {
     return Text(
       title,
-      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-            fontWeight: FontWeight.bold,
-          ),
+      style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
     );
   }
 
@@ -273,21 +236,9 @@ class InfoDisplayScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 4),
-                  Text(
-                    value,
-                    style: const TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  Text(value, style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
                   const SizedBox(height: 4),
-                  Text(
-                    subtitle,
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: color,
-                    ),
-                  ),
+                  Text(subtitle, style: TextStyle(fontSize: 12, color: color)),
                 ],
               ),
             ),
@@ -304,10 +255,7 @@ class InfoDisplayScreen extends StatelessWidget {
       trailing: Container(
         width: 12,
         height: 12,
-        decoration: BoxDecoration(
-          color: color,
-          shape: BoxShape.circle,
-        ),
+        decoration: BoxDecoration(color: color, shape: BoxShape.circle),
       ),
     );
   }

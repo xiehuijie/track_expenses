@@ -82,10 +82,7 @@ class _CategorySelectorDemoState extends State<CategorySelectorDemo>
                   ],
                 ),
                 borderRadius: BorderRadius.circular(16),
-                border: Border.all(
-                  color: _selectedCategory!.color,
-                  width: 2,
-                ),
+                border: Border.all(color: _selectedCategory!.color, width: 2),
               ),
               child: Row(
                 children: [
@@ -97,10 +94,7 @@ class _CategorySelectorDemoState extends State<CategorySelectorDemo>
                       borderRadius: BorderRadius.circular(16),
                     ),
                     child: Center(
-                      child: Text(
-                        _selectedCategory!.emoji,
-                        style: const TextStyle(fontSize: 32),
-                      ),
+                      child: Text(_selectedCategory!.emoji, style: const TextStyle(fontSize: 32)),
                     ),
                   ),
                   const SizedBox(width: 16),
@@ -110,27 +104,17 @@ class _CategorySelectorDemoState extends State<CategorySelectorDemo>
                       children: [
                         Text(
                           '已选择类别',
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: colorScheme.onSurfaceVariant,
-                          ),
+                          style: TextStyle(fontSize: 12, color: colorScheme.onSurfaceVariant),
                         ),
                         const SizedBox(height: 4),
                         Text(
                           _selectedCategory!.name,
-                          style: const TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
                   ),
-                  Icon(
-                    Icons.check_circle,
-                    color: _selectedCategory!.color,
-                    size: 32,
-                  ),
+                  Icon(Icons.check_circle, color: _selectedCategory!.color, size: 32),
                 ],
               ),
             ),
@@ -178,9 +162,7 @@ class _CategorySelectorDemoState extends State<CategorySelectorDemo>
                   ? category.color.withOpacity(0.2)
                   : Theme.of(context).colorScheme.surfaceContainerHighest,
               borderRadius: BorderRadius.circular(16),
-              border: isSelected
-                  ? Border.all(color: category.color, width: 2)
-                  : null,
+              border: isSelected ? Border.all(color: category.color, width: 2) : null,
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -192,12 +174,7 @@ class _CategorySelectorDemoState extends State<CategorySelectorDemo>
                     color: category.color.withOpacity(isSelected ? 1.0 : 0.2),
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: Center(
-                    child: Text(
-                      category.emoji,
-                      style: const TextStyle(fontSize: 28),
-                    ),
-                  ),
+                  child: Center(child: Text(category.emoji, style: const TextStyle(fontSize: 28))),
                 ),
                 const SizedBox(height: 8),
                 Text(

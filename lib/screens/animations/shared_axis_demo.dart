@@ -18,10 +18,7 @@ class _SharedAxisDemoState extends State<SharedAxisDemo> {
     final colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('共享轴动画'),
-        backgroundColor: colorScheme.surfaceContainer,
-      ),
+      appBar: AppBar(title: const Text('共享轴动画'), backgroundColor: colorScheme.surfaceContainer),
       body: Column(
         children: [
           // 控制面板
@@ -33,9 +30,9 @@ class _SharedAxisDemoState extends State<SharedAxisDemo> {
               children: [
                 Text(
                   '选择过渡方向',
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 12),
                 SegmentedButton<SharedAxisTransitionType>(
@@ -114,9 +111,7 @@ class _SharedAxisDemoState extends State<SharedAxisDemo> {
                     },
                     icon: Icon(_isFirstPage ? Icons.arrow_forward : Icons.arrow_back),
                     label: Text(_isFirstPage ? '下一页' : '上一页'),
-                    style: FilledButton.styleFrom(
-                      padding: const EdgeInsets.all(16),
-                    ),
+                    style: FilledButton.styleFrom(padding: const EdgeInsets.all(16)),
                   ),
                 ),
               ],
@@ -144,26 +139,23 @@ class _SharedAxisDemoState extends State<SharedAxisDemo> {
           Container(
             width: 120,
             height: 120,
-            decoration: BoxDecoration(
-              color: color,
-              shape: BoxShape.circle,
-            ),
+            decoration: BoxDecoration(color: color, shape: BoxShape.circle),
             child: Icon(icon, size: 64, color: Theme.of(context).colorScheme.onPrimaryContainer),
           ),
           const SizedBox(height: 32),
           Text(
             title,
-            style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 16),
           Text(
             description,
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: Theme.of(context).colorScheme.onSurfaceVariant,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodyLarge?.copyWith(color: Theme.of(context).colorScheme.onSurfaceVariant),
           ),
           const SizedBox(height: 32),
           Wrap(

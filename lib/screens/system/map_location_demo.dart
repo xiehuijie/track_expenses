@@ -19,30 +19,10 @@ class _MapLocationDemoState extends State<MapLocationDemo> {
       longitude: 116.4074,
       icon: Icons.account_balance,
     ),
-    LocationItem(
-      name: '上海东方明珠',
-      latitude: 31.2397,
-      longitude: 121.4994,
-      icon: Icons.location_city,
-    ),
-    LocationItem(
-      name: '深圳腾讯大厦',
-      latitude: 22.5408,
-      longitude: 114.0542,
-      icon: Icons.business,
-    ),
-    LocationItem(
-      name: '杭州西湖',
-      latitude: 30.2430,
-      longitude: 120.1393,
-      icon: Icons.water,
-    ),
-    LocationItem(
-      name: '广州塔',
-      latitude: 23.1087,
-      longitude: 113.3190,
-      icon: Icons.flag,
-    ),
+    LocationItem(name: '上海东方明珠', latitude: 31.2397, longitude: 121.4994, icon: Icons.location_city),
+    LocationItem(name: '深圳腾讯大厦', latitude: 22.5408, longitude: 114.0542, icon: Icons.business),
+    LocationItem(name: '杭州西湖', latitude: 30.2430, longitude: 120.1393, icon: Icons.water),
+    LocationItem(name: '广州塔', latitude: 23.1087, longitude: 113.3190, icon: Icons.flag),
   ];
 
   LocationItem? _selectedLocation;
@@ -52,10 +32,7 @@ class _MapLocationDemoState extends State<MapLocationDemo> {
     final colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('地图定位'),
-        backgroundColor: colorScheme.surfaceContainer,
-      ),
+      appBar: AppBar(title: const Text('地图定位'), backgroundColor: colorScheme.surfaceContainer),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
@@ -133,15 +110,11 @@ class _MapLocationDemoState extends State<MapLocationDemo> {
                               const SizedBox(height: 4),
                               Text(
                                 '纬度: ${_selectedLocation!.latitude.toStringAsFixed(4)}',
-                                style: TextStyle(
-                                  color: colorScheme.onSecondaryContainer,
-                                ),
+                                style: TextStyle(color: colorScheme.onSecondaryContainer),
                               ),
                               Text(
                                 '经度: ${_selectedLocation!.longitude.toStringAsFixed(4)}',
-                                style: TextStyle(
-                                  color: colorScheme.onSecondaryContainer,
-                                ),
+                                style: TextStyle(color: colorScheme.onSecondaryContainer),
                               ),
                             ],
                           ),
@@ -158,9 +131,7 @@ class _MapLocationDemoState extends State<MapLocationDemo> {
           // 位置列表
           Text(
             '预设位置',
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+            style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 12),
 
@@ -205,7 +176,9 @@ class _MapLocationDemoState extends State<MapLocationDemo> {
                 ),
                 child: Icon(
                   location.icon,
-                  color: isSelected ? colorScheme.onTertiaryContainer : colorScheme.onPrimaryContainer,
+                  color: isSelected
+                      ? colorScheme.onTertiaryContainer
+                      : colorScheme.onPrimaryContainer,
                 ),
               ),
               const SizedBox(width: 16),
@@ -277,12 +250,9 @@ class _MapLocationDemoState extends State<MapLocationDemo> {
 
   void _showSnackBar(String message) {
     if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-        behavior: SnackBarBehavior.floating,
-      ),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(message), behavior: SnackBarBehavior.floating));
   }
 }
 

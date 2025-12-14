@@ -17,27 +17,129 @@ class _EmojiIconPickerDemoState extends State<EmojiIconPickerDemo>
   final List<EmojiCategory> _emojiCategories = [
     EmojiCategory(
       name: '表情',
-      emojis: ['😀', '😃', '😄', '😁', '😆', '😅', '🤣', '😂', '🙂', '🙃', '😉', '😊', '😇', '🥰', '😍', '🤩'],
+      emojis: [
+        '😀',
+        '😃',
+        '😄',
+        '😁',
+        '😆',
+        '😅',
+        '🤣',
+        '😂',
+        '🙂',
+        '🙃',
+        '😉',
+        '😊',
+        '😇',
+        '🥰',
+        '😍',
+        '🤩',
+      ],
     ),
     EmojiCategory(
       name: '手势',
-      emojis: ['👍', '👎', '👌', '✌️', '🤞', '🤟', '🤘', '🤙', '👈', '👉', '👆', '👇', '☝️', '✋', '🤚', '🖐'],
+      emojis: [
+        '👍',
+        '👎',
+        '👌',
+        '✌️',
+        '🤞',
+        '🤟',
+        '🤘',
+        '🤙',
+        '👈',
+        '👉',
+        '👆',
+        '👇',
+        '☝️',
+        '✋',
+        '🤚',
+        '🖐',
+      ],
     ),
     EmojiCategory(
       name: '食物',
-      emojis: ['🍎', '🍊', '🍋', '🍌', '🍉', '🍇', '🍓', '🫐', '🍈', '🍒', '🍑', '🥭', '🍍', '🥥', '🥝', '🍅'],
+      emojis: [
+        '🍎',
+        '🍊',
+        '🍋',
+        '🍌',
+        '🍉',
+        '🍇',
+        '🍓',
+        '🫐',
+        '🍈',
+        '🍒',
+        '🍑',
+        '🥭',
+        '🍍',
+        '🥥',
+        '🥝',
+        '🍅',
+      ],
     ),
     EmojiCategory(
       name: '动物',
-      emojis: ['🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🐻', '🐼', '🐨', '🐯', '🦁', '🐮', '🐷', '🐸', '🐵', '🐔'],
+      emojis: [
+        '🐶',
+        '🐱',
+        '🐭',
+        '🐹',
+        '🐰',
+        '🦊',
+        '🐻',
+        '🐼',
+        '🐨',
+        '🐯',
+        '🦁',
+        '🐮',
+        '🐷',
+        '🐸',
+        '🐵',
+        '🐔',
+      ],
     ),
     EmojiCategory(
       name: '活动',
-      emojis: ['⚽', '🏀', '🏈', '⚾', '🥎', '🎾', '🏐', '🏉', '🥏', '🎱', '🪀', '🏓', '🏸', '🏒', '🏑', '🥍'],
+      emojis: [
+        '⚽',
+        '🏀',
+        '🏈',
+        '⚾',
+        '🥎',
+        '🎾',
+        '🏐',
+        '🏉',
+        '🥏',
+        '🎱',
+        '🪀',
+        '🏓',
+        '🏸',
+        '🏒',
+        '🏑',
+        '🥍',
+      ],
     ),
     EmojiCategory(
       name: '旅行',
-      emojis: ['🚗', '🚕', '🚙', '🚌', '🚎', '🏎', '🚓', '🚑', '🚒', '🚐', '🛻', '🚚', '🚛', '🚜', '🏍', '🛵'],
+      emojis: [
+        '🚗',
+        '🚕',
+        '🚙',
+        '🚌',
+        '🚎',
+        '🏎',
+        '🚓',
+        '🚑',
+        '🚒',
+        '🚐',
+        '🛻',
+        '🚚',
+        '🚛',
+        '🚜',
+        '🏍',
+        '🛵',
+      ],
     ),
   ];
 
@@ -45,33 +147,69 @@ class _EmojiIconPickerDemoState extends State<EmojiIconPickerDemo>
     IconCategory(
       name: '通用',
       icons: [
-        Icons.home, Icons.favorite, Icons.star, Icons.bookmark,
-        Icons.settings, Icons.search, Icons.notifications, Icons.mail,
-        Icons.person, Icons.group, Icons.phone, Icons.email,
+        Icons.home,
+        Icons.favorite,
+        Icons.star,
+        Icons.bookmark,
+        Icons.settings,
+        Icons.search,
+        Icons.notifications,
+        Icons.mail,
+        Icons.person,
+        Icons.group,
+        Icons.phone,
+        Icons.email,
       ],
     ),
     IconCategory(
       name: '媒体',
       icons: [
-        Icons.play_arrow, Icons.pause, Icons.stop, Icons.skip_next,
-        Icons.skip_previous, Icons.volume_up, Icons.volume_down, Icons.volume_off,
-        Icons.mic, Icons.camera, Icons.photo, Icons.video_call,
+        Icons.play_arrow,
+        Icons.pause,
+        Icons.stop,
+        Icons.skip_next,
+        Icons.skip_previous,
+        Icons.volume_up,
+        Icons.volume_down,
+        Icons.volume_off,
+        Icons.mic,
+        Icons.camera,
+        Icons.photo,
+        Icons.video_call,
       ],
     ),
     IconCategory(
       name: '文件',
       icons: [
-        Icons.folder, Icons.insert_drive_file, Icons.description, Icons.picture_as_pdf,
-        Icons.image, Icons.audio_file, Icons.video_file, Icons.attachment,
-        Icons.cloud, Icons.cloud_upload, Icons.cloud_download, Icons.save,
+        Icons.folder,
+        Icons.insert_drive_file,
+        Icons.description,
+        Icons.picture_as_pdf,
+        Icons.image,
+        Icons.audio_file,
+        Icons.video_file,
+        Icons.attachment,
+        Icons.cloud,
+        Icons.cloud_upload,
+        Icons.cloud_download,
+        Icons.save,
       ],
     ),
     IconCategory(
       name: '交互',
       icons: [
-        Icons.add, Icons.remove, Icons.edit, Icons.delete,
-        Icons.check, Icons.close, Icons.arrow_back, Icons.arrow_forward,
-        Icons.refresh, Icons.sync, Icons.download, Icons.upload,
+        Icons.add,
+        Icons.remove,
+        Icons.edit,
+        Icons.delete,
+        Icons.check,
+        Icons.close,
+        Icons.arrow_back,
+        Icons.arrow_forward,
+        Icons.refresh,
+        Icons.sync,
+        Icons.download,
+        Icons.upload,
       ],
     ),
   ];
@@ -114,19 +252,14 @@ class _EmojiIconPickerDemoState extends State<EmojiIconPickerDemo>
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 if (_tabController.index == 0 && _selectedEmoji != null) ...[
-                  Text(
-                    _selectedEmoji!,
-                    style: const TextStyle(fontSize: 64),
-                  ),
+                  Text(_selectedEmoji!, style: const TextStyle(fontSize: 64)),
                   const SizedBox(width: 16),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         '已选择 Emoji',
-                        style: TextStyle(
-                          color: colorScheme.onPrimaryContainer.withOpacity(0.7),
-                        ),
+                        style: TextStyle(color: colorScheme.onPrimaryContainer.withOpacity(0.7)),
                       ),
                       Text(
                         _selectedEmoji!,
@@ -139,11 +272,7 @@ class _EmojiIconPickerDemoState extends State<EmojiIconPickerDemo>
                     ],
                   ),
                 ] else if (_tabController.index == 1 && _selectedIcon != null) ...[
-                  Icon(
-                    _selectedIcon,
-                    size: 64,
-                    color: colorScheme.onPrimaryContainer,
-                  ),
+                  Icon(_selectedIcon, size: 64, color: colorScheme.onPrimaryContainer),
                   const SizedBox(width: 16),
                   Text(
                     '已选择图标',
@@ -176,10 +305,7 @@ class _EmojiIconPickerDemoState extends State<EmojiIconPickerDemo>
           Expanded(
             child: TabBarView(
               controller: _tabController,
-              children: [
-                _buildEmojiGrid(),
-                _buildIconGrid(),
-              ],
+              children: [_buildEmojiGrid(), _buildIconGrid()],
             ),
           ),
         ],
@@ -200,9 +326,9 @@ class _EmojiIconPickerDemoState extends State<EmojiIconPickerDemo>
               padding: const EdgeInsets.symmetric(vertical: 12),
               child: Text(
                 category.name,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
               ),
             ),
             GridView.builder(
@@ -232,18 +358,10 @@ class _EmojiIconPickerDemoState extends State<EmojiIconPickerDemo>
                           : Theme.of(context).colorScheme.surfaceContainerHighest,
                       borderRadius: BorderRadius.circular(12),
                       border: isSelected
-                          ? Border.all(
-                              color: Theme.of(context).colorScheme.primary,
-                              width: 2,
-                            )
+                          ? Border.all(color: Theme.of(context).colorScheme.primary, width: 2)
                           : null,
                     ),
-                    child: Center(
-                      child: Text(
-                        emoji,
-                        style: const TextStyle(fontSize: 32),
-                      ),
-                    ),
+                    child: Center(child: Text(emoji, style: const TextStyle(fontSize: 32))),
                   ),
                 );
               },
@@ -268,9 +386,9 @@ class _EmojiIconPickerDemoState extends State<EmojiIconPickerDemo>
               padding: const EdgeInsets.symmetric(vertical: 12),
               child: Text(
                 category.name,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
               ),
             ),
             GridView.builder(
@@ -300,10 +418,7 @@ class _EmojiIconPickerDemoState extends State<EmojiIconPickerDemo>
                           : Theme.of(context).colorScheme.surfaceContainerHighest,
                       borderRadius: BorderRadius.circular(12),
                       border: isSelected
-                          ? Border.all(
-                              color: Theme.of(context).colorScheme.primary,
-                              width: 2,
-                            )
+                          ? Border.all(color: Theme.of(context).colorScheme.primary, width: 2)
                           : null,
                     ),
                     child: Icon(
