@@ -11,6 +11,7 @@ import 'components/dialogs_screen.dart';
 import 'components/inputs_screen.dart';
 import 'components/navigation_screen.dart';
 import 'components/selections_screen.dart';
+import 'database/database_test_screen.dart';
 import 'hardware/hardware_screen.dart';
 import 'storage/storage_screen.dart';
 import 'system/system_screen.dart';
@@ -169,6 +170,12 @@ class _HomeScreenState extends State<HomeScreen> {
           subtitle: 'SharedPreferences, SQLite, 文件操作',
           icon: Icons.save,
           screen: const StorageScreen(),
+        ),
+        _DemoItem(
+          title: '数据库测试',
+          subtitle: 'ORM数据库CRUD操作测试',
+          icon: Icons.table_chart,
+          screen: const DatabaseTestScreen(),
         ),
       ],
     ),
