@@ -22,6 +22,10 @@ dependencies:
   sqflite: ^2.4.1
   path_provider: ^2.1.5
   path: ^1.9.1
+  
+  # ORM - Drift (SQLite ORM for Flutter)
+  drift: ^2.25.0
+  sqlite3_flutter_libs: ^0.5.28
 
   # 文件操作
   file_picker: ^8.1.7
@@ -90,6 +94,10 @@ dev_dependencies:
   # 集成测试
   integration_test:
     sdk: flutter
+  
+  # Drift 代码生成
+  drift_dev: ^2.25.0
+  build_runner: ^2.4.15
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
